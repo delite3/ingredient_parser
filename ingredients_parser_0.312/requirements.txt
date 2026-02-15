@@ -1,0 +1,9 @@
+
+
+opencv-python
+setuptools
+easyocr
+torch
+torchvision
+beautifulsoup4
+Levenshtein

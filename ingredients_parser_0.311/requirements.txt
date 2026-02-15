@@ -1,0 +1,10 @@
+
+
+opencv-python
+setuptools
+paddlepaddle
+paddleocr
+easyocr
+beautifulsoup4
+Levenshtein
+requests

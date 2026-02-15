@@ -1,0 +1,914 @@
+[
+  {
+    "original": "Propolis Extract",
+    "corrected": "Propolis Extract",
+    "match_type": "exact",
+    "info": {
+      "name": "PROPOLIS EXTRACT",
+      "url": "https://www.ewg.org/skindeep/ingredients/705309-PROPOLIS_EXTRACT/",
+      "score_range": "1-1",
+      "data_level": "Limited"
+    }
+  },
+  {
+    "original": "Dipropylene Glycol",
+    "corrected": "Dipropylene Glycol",
+    "match_type": "exact",
+    "info": {
+      "name": "DIPROPYLENE GLYCOL",
+      "url": "https://www.ewg.org/skindeep/ingredients/702123-DIPROPYLENE_GLYCOL/",
+      "score_range": "1-3",
+      "data_level": "Limited",
+      "concerns": [
+        {
+          "concern": "One or more animal studies show kidney effects at high doses (low dose studies may be unavailable for this ingredient)",
+          "reference": "NTP toxicology and carcinogensis studies of dipropylene glycol (CAS No 25265-71-8) in F344/N rats and B6C3F1 mice (drinking water studies).(2004-06-01)"
+        },
+        {
+          "concern": "Associated with kidney toxicity",
+          "reference": "Acute renal failure, neuropathy, and myopathy after ingestion of dipropylene glycol fog solution(2008-06-01)"
+        },
+        {
+          "concern": "One or more animal studies show toxic effects at high doses (low dose studies may be unavailable for this ingredient)",
+          "reference": "Toxicology and carcinogenesis studies of dipropylene glycol in rats and mice(2004-11-01)"
+        },
+        {
+          "concern": "Classified as not expected to be potentially toxic or harmful",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Classified as a low human health priority",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Limited evidence of cardiovascular or blood toxicity",
+          "reference": "US National Library of Medicine,"
+        },
+        {
+          "concern": "reproductive - weight of evidence unknown/unassessed/unreview: published lit review or major tox study",
+          "reference": "US National Library of Medicine,"
+        },
+        {
+          "concern": "Associated with immunotoxicity or allergies",
+          "reference": "Contact sensitization to dipropylene glycol in an eczema population(1995-09-01)"
+        },
+        {
+          "concern": "Associated with endocrine disruption",
+          "reference": "National Toxicology Program (NTP)"
+        },
+        {
+          "concern": "Limited evidence of skin irritation",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Limited evidence of eye irritation",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Not suspected to be persistent",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be bioaccumulative",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be an environmental toxin",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Limited evidence of  toxicity",
+          "reference": "US National Library of Medicine,"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Water",
+    "corrected": "Water",
+    "match_type": "exact",
+    "info": {
+      "name": "WATER",
+      "url": "https://www.ewg.org/skindeep/ingredients/706945-WATER/",
+      "score_range": "1-1",
+      "data_level": "Robust",
+      "concerns": [
+        {
+          "concern": "Classified as not expected to be potentially toxic or harmful",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Classified as a low human health priority",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be bioaccumulative",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be an environmental toxin",
+          "reference": "Environment Canada"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Niacinamide",
+    "corrected": "Niacinamide",
+    "match_type": "exact",
+    "info": {
+      "name": "NIACINAMIDE",
+      "url": "https://www.ewg.org/skindeep/ingredients/704134-NIACINAMIDE/",
+      "score_range": "1-1",
+      "data_level": "Good",
+      "concerns": [
+        {
+          "concern": "One or more animal studies show tumor formation at high doses",
+          "reference": "Role of nicotinamide in DNA damage, mutagenesis, and DNA repair(2010-07-01)"
+        },
+        {
+          "concern": "Designated as safe for general or specific, limited use in food",
+          "reference": "US Food and Drug Administration (FDA)"
+        },
+        {
+          "concern": "Prohibited for use in food",
+          "reference": "US Food and Drug Administration (FDA)"
+        },
+        {
+          "concern": "Risk assessment method deficiencies and data gaps - Maximum reported 'as used' concentration is basis of safety assessment by industry safety panel (Cosmetic Ingredient Review, CIR) - implicit safe concentration limit in product",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Classified as not expected to be potentially toxic or harmful",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Classified as a low human health priority",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be persistent",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be bioaccumulative",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be an environmental toxin",
+          "reference": "Environment Canada"
+        }
+      ]
+    }
+  },
+  {
+    "original": "1",
+    "corrected": "FD&C Yellow No. 5 (CI 19140) Lake",
+    "match_type": "fuzzy",
+    "info": {
+      "name": "FD&C Yellow No. 5 (CI 19140) Lake",
+      "url": "https://www.ewg.org/skindeep/ingredients/702443-FDC_Yellow_No_5_CI_19140_Lake/",
+      "score_range": "4-6",
+      "data_level": "Fair",
+      "concerns": [
+        {
+          "concern": "One or more human case studies show possible neurological effects",
+          "reference": "Scientific Opinion on the re-evaluation Tartrazine (E 102)(2009-12-11)"
+        },
+        {
+          "concern": "One or more animal studies show  effects at moderate doses",
+          "reference": "Reproductive and neurobehavioural toxicity study of tartrazine administered to mice in the diet(2006-02-01)"
+        },
+        {
+          "concern": "One or more animal studies show  effects at moderate doses",
+          "reference": "Effects of tartrazine on exploratory behavior in a three-generation toxicity study in mice(2008-10-01)"
+        },
+        {
+          "concern": "One or more human case studies show possible behavioral effects",
+          "reference": "Synthetic food coloring and behavior: a dose response effect in a double-blind, placebo-controlled, repeated-measures study(1994-11-01)"
+        },
+        {
+          "concern": "One or more human case studies show possible behavioral effects",
+          "reference": "Food additives and hyperactive behaviour in 3-year-old and 8/9-year-old children in the community: a randomised, double-blinded, placebo-controlled trial(2007-11-03)"
+        },
+        {
+          "concern": "One or more animal studies show neurobehavioral  effects at high doses",
+          "reference": "The Potential Health Hazard of Tartrazine and Levels of Hyperactivity, Anxiety-Like Symptoms, Depression and Anti-social behaviour in Rats(2011-01-01)"
+        },
+        {
+          "concern": "One or more human case studies show significant behavioral effects",
+          "reference": "Peer Reviewed Literature"
+        },
+        {
+          "concern": "One or more human case studies show possible immune or allergenic effects",
+          "reference": "Scientific Opinion on the re-evaluation Tartrazine (E 102)(2009-12-11)"
+        },
+        {
+          "concern": "One or more human case studies show equivocal immune or allergenic effects",
+          "reference": "OPINION OF THE SCIENTIFIC COMMITTEE ON COSMETIC PRODUCTS AND NON-FOOD PRODUCTS INTENDED FOR CONSUMERS Concerning Acid Yellow 23(2004-04-23)"
+        },
+        {
+          "concern": "Human immune toxicant or allergen - moderate evidence",
+          "reference": "Peer Reviewed Literature"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - Color additive approved by FDA for use in cosmetics",
+          "reference": "US Food and Drug Administration (FDA)"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - Color additive approved by FDA for cosmetics used around eyes",
+          "reference": "US Food and Drug Administration (FDA)"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - hair dyes",
+          "reference": "EU Cosmetics Directive"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - Color Additives Lakes - Batch Certified by the U.S. Food and Drug Administration",
+          "reference": "Personal Care Products Council"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "US Food and Drug Administration (FDA)"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - Color Additives - Batch Certified by the U.S. Food and Drug Administration",
+          "reference": "Personal Care Products Council"
+        },
+        {
+          "concern": "Designated as safe for general or specific, limited use in food",
+          "reference": "US Food and Drug Administration (FDA)"
+        },
+        {
+          "concern": "Classified as not expected to be potentially toxic or harmful",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "One or more animal studies show  effects at high doses (low dose studies may be unavailable for this ingredient)",
+          "reference": "Hepatic effects of tartrazine (E 102) after systemic exposure are independent of oestrogen receptor interactions in the mouse(2017-05-01)"
+        },
+        {
+          "concern": "Classified as medium human health priority",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be bioaccumulative",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Persistent or bioaccumulative and moderate to high toxicity concern in humans",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be an environmental toxin",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Determined safe for use in cosmetics, subject to concentration or use limitations - any",
+          "reference": "US Food and Drug Administration (FDA)"
+        },
+        {
+          "concern": "One or more studies show weak endocrine disruption",
+          "reference": "Tartrazine and sunset yellow are xenoestrogens in a new screening assay to identify modulators of human oestrogen receptor transcriptional activity(2012-08-16)"
+        },
+        {
+          "concern": "Associated with endocrine disruption",
+          "reference": "National Toxicology Program (NTP)"
+        },
+        {
+          "concern": "One or more in vitro tests on cells show inconclusive, but potentially positive mutation results",
+          "reference": "OPINION OF THE SCIENTIFIC COMMITTEE ON COSMETIC PRODUCTS AND NON-FOOD PRODUCTS INTENDED FOR CONSUMERS Concerning Acid Yellow 23(2004-04-23)"
+        },
+        {
+          "concern": "Not likely to be carcinogenic in humans",
+          "reference": "OPINION OF THE SCIENTIFIC COMMITTEE ON COSMETIC PRODUCTS AND NON-FOOD PRODUCTS INTENDED FOR CONSUMERS Concerning Acid Yellow 23(2004-04-23)"
+        },
+        {
+          "concern": "One or more in vitro tests on mammalian cells show positive mutation results",
+          "reference": "Effects on DNA repair in human lymphocytes exposed to the food dye tartrazine yellow(2015-03-01)"
+        },
+        {
+          "concern": "Not likely to be mutagenic in humans",
+          "reference": "Lack of genotoxic effect of food dyes amaranth, sunset yellow and tartrazine and their metabolites in the gut micronucleus assay in mice(2009-02-01)"
+        },
+        {
+          "concern": "Not likely to be mutagenic in humans",
+          "reference": "Lack of genotoxicity in\u00a0vivo for food color additive Tartrazine(2017-07-01)"
+        },
+        {
+          "concern": "Cancer - limited evidence",
+          "reference": "Peer Reviewed Literature"
+        },
+        {
+          "concern": "One or more animal studies show  effects at high doses",
+          "reference": "Effects of Tartrazine on Neural Tube Development in the Early Stage of Chicken Embryos(2020-01-01)"
+        },
+        {
+          "concern": "One or more animal studies show developmental effects at high doses",
+          "reference": "Embryotoxic and Teratogenic Effects of Tartrazine in Rats(2019-01-01)"
+        },
+        {
+          "concern": "developmental toxicity - weight of evidence unknown/unassessed/unreviewed",
+          "reference": "Developmental Toxicity Assay for Food Additive Tartrazine Using Zebrafish ( Danio rerio) Embryo Cultures(1900-01-01)"
+        }
+      ]
+    }
+  },
+  {
+    "original": "2 -Hexanediol",
+    "corrected": "1,2-HEXANEDIOL",
+    "match_type": "fuzzy",
+    "info": {
+      "name": "1,2-HEXANEDIOL",
+      "url": "https://www.ewg.org/skindeep/ingredients/700001-12HEXANEDIOL/",
+      "score_range": "1-1",
+      "data_level": "Limited",
+      "concerns": [
+        {
+          "concern": "Risk assessment method deficiencies and data gaps - Maximum reported 'as used' concentration is basis of safety assessment by industry safety panel (Cosmetic Ingredient Review, CIR) - implicit safe concentration limit in product",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Limited evidence of dermal irritation",
+          "reference": "European Chemicals Agency (ECHA)"
+        },
+        {
+          "concern": "Limited evidence of Occular irritation",
+          "reference": "European Chemicals Agency (ECHA)"
+        },
+        {
+          "concern": "Limited evidence of Lung irritation",
+          "reference": "European Chemicals Agency (ECHA)"
+        },
+        {
+          "concern": "One or more animal studies show occular irritation at high doses",
+          "reference": "Peer Reviewed Literature"
+        },
+        {
+          "concern": "One or more animal studies show Dermal irritation at high doses",
+          "reference": "Peer Reviewed Literature"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Sodium Hyaluronate",
+    "corrected": "Sodium Hyaluronate",
+    "match_type": "exact",
+    "info": {
+      "name": "SODIUM HYALURONATE",
+      "url": "https://www.ewg.org/skindeep/ingredients/706071-SODIUM_HYALURONATE/",
+      "score_range": "1-1",
+      "data_level": "Fair",
+      "concerns": [
+        {
+          "concern": "Risk assessment method deficiencies and data gaps - Maximum reported 'as used' concentration is basis of safety assessment by industry safety panel (Cosmetic Ingredient Review, CIR) - implicit safe concentration limit in product",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Uncertain environmental toxin",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Classified as not expected to be potentially toxic or harmful",
+          "reference": "Environment Canada"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Curcuma Longa (Turmeric) Root Extract",
+    "corrected": "Curcuma Longa (Turmeric) Root Extract",
+    "match_type": "exact",
+    "info": {
+      "name": "CURCUMA LONGA (TURMERIC) ROOT EXTRACT",
+      "url": "https://www.ewg.org/skindeep/ingredients/701721-CURCUMA_LONGA_TURMERIC_ROOT_EXTRACT/",
+      "score_range": "1-1",
+      "data_level": "Fair",
+      "concerns": [
+        {
+          "concern": "Designated as safe for general or specific, limited use in food",
+          "reference": "US Food and Drug Administration (FDA)"
+        },
+        {
+          "concern": "Classified as potentially toxic or harmful",
+          "reference": "Toxicity studies on Alpinia galanga and Curcuma longa(1992-04-01)"
+        },
+        {
+          "concern": "One or more animal studies show female reproductive system effects at high doses",
+          "reference": "Effect of Curcuma longa (rhizomes) on fertility in experimental animals(1974-11-01)"
+        },
+        {
+          "concern": "Limited evidence of eye irritation",
+          "reference": "European Chemicals Agency (ECHA)"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Ocimum Sanctum Leaf Extract",
+    "corrected": "Ocimum Sanctum Leaf Extract",
+    "match_type": "exact",
+    "info": {
+      "name": "OCIMUM SANCTUM LEAF EXTRACT",
+      "url": "https://www.ewg.org/skindeep/ingredients/721007-OCIMUM_SANCTUM_LEAF_EXTRACT/",
+      "score_range": "1-1",
+      "data_level": "Limited"
+    }
+  },
+  {
+    "original": "Centella Asiatica Extract",
+    "corrected": "CENTELLA ASIATICA (GOTU KOLA) EXTRACT",
+    "match_type": "fuzzy",
+    "info": {
+      "name": "CENTELLA ASIATICA (GOTU KOLA) EXTRACT",
+      "url": "https://www.ewg.org/skindeep/ingredients/701197-CENTELLA_ASIATICA_GOTU_KOLA_EXTRACT/"
+    }
+  },
+  {
+    "original": "Corallina Officinalis Extract",
+    "corrected": "Corallina Officinalis Extract",
+    "match_type": "exact",
+    "info": {
+      "name": "CORALLINA OFFICINALIS EXTRACT",
+      "url": "https://www.ewg.org/skindeep/ingredients/718082-CORALLINA_OFFICINALIS_EXTRACT/",
+      "score_range": "1-1",
+      "data_level": "Limited",
+      "concerns": [
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Lotus Corniculatus Seed Extract",
+    "corrected": "LOTUS CORNICULATUS (BIRD'S FOOT TREFOIL) SEED EXTRACT",
+    "match_type": "fuzzy",
+    "info": {
+      "name": "LOTUS CORNICULATUS (BIRD'S FOOT TREFOIL) SEED EXTRACT",
+      "url": "https://www.ewg.org/skindeep/ingredients/703622-LOTUS_CORNICULATUS_BIRDS_FOOT_TREFOIL_SEED_EXTRACT/",
+      "score_range": "1-1",
+      "data_level": "Limited"
+    }
+  },
+  {
+    "original": "Caloph yllum Inophyllum Seed Oil",
+    "corrected": "CALOPHYLLUM INOPHYLLUM (ALEXANDRIAN LAUREL) SEED OIL",
+    "match_type": "fuzzy",
+    "info": {
+      "name": "CALOPHYLLUM INOPHYLLUM (ALEXANDRIAN LAUREL) SEED OIL",
+      "url": "https://www.ewg.org/skindeep/ingredients/701006-CALOPHYLLUM_INOPHYLLUM_ALEXANDRIAN_LAUREL_SEED_OIL/",
+      "score_range": "1-1",
+      "data_level": "Limited"
+    }
+  },
+  {
+    "original": "Betaine Salicylate",
+    "corrected": "Betaine Salicylate",
+    "match_type": "exact",
+    "info": {
+      "name": "BETAINE SALICYLATE",
+      "url": "https://www.ewg.org/skindeep/ingredients/716964-BETAINE_SALICYLATE/",
+      "score_range": "1-1",
+      "data_level": "None"
+    }
+  },
+  {
+    "original": "So dium Polyacryloyldimethyl Taurate",
+    "corrected": "SODIUM POLYACRYLOYLDIMETHYL TAURATE",
+    "match_type": "fuzzy",
+    "info": {
+      "name": "SODIUM POLYACRYLOYLDIMETHYL TAURATE",
+      "url": "https://www.ewg.org/skindeep/ingredients/706161-SODIUM_POLYACRYLOYLDIMETHYL_TAURATE/",
+      "score_range": "1-1",
+      "data_level": "Limited",
+      "concerns": [
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Tromethamine",
+    "corrected": "Tromethamine",
+    "match_type": "exact",
+    "info": {
+      "name": "TROMETHAMINE",
+      "url": "https://www.ewg.org/skindeep/ingredients/706739-TROMETHAMINE/",
+      "score_range": "1-3",
+      "data_level": "Limited",
+      "concerns": [
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Violation of government restrictions - Restricted in cosmetics; use, concentration, or manufacturing restrictions - any",
+          "reference": "EU Cosmetics Directive"
+        },
+        {
+          "concern": "Classified as not expected to be potentially toxic or harmful",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be persistent",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be bioaccumulative",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be an environmental toxin",
+          "reference": "Environment Canada"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Polyglyceryl-10 Laurate",
+    "corrected": "Polyglyceryl-10 Laurate",
+    "match_type": "exact",
+    "info": {
+      "name": "POLYGLYCERYL-10 LAURATE",
+      "url": "https://www.ewg.org/skindeep/ingredients/705011-POLYGLYCERYL10_LAURATE/",
+      "score_range": "1-1",
+      "data_level": "Limited",
+      "concerns": [
+        {
+          "concern": "skin/eye/lung irritation - weight of evidence unknown/unassessed",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Caprylyl Glycol",
+    "corrected": "Caprylyl Glycol",
+    "match_type": "exact",
+    "info": {
+      "name": "CAPRYLYL GLYCOL",
+      "url": "https://www.ewg.org/skindeep/ingredients/701067-CAPRYLYL_GLYCOL/",
+      "score_range": "1-1",
+      "data_level": "Limited",
+      "concerns": [
+        {
+          "concern": "Risk assessment method deficiencies and data gaps - Maximum reported 'as used' concentration is basis of safety assessment by industry safety panel (Cosmetic Ingredient Review, CIR) - implicit safe concentration limit in product",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Classified as not expected to be potentially toxic or harmful",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be persistent",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be bioaccumulative",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be an environmental toxin",
+          "reference": "Environment Canada"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Ethylhex ylglycerin",
+    "corrected": "ETHYLHEXYLGLYCERIN",
+    "match_type": "fuzzy",
+    "info": {
+      "name": "ETHYLHEXYLGLYCERIN",
+      "url": "https://www.ewg.org/skindeep/ingredients/702352-ETHYLHEXYLGLYCERIN/",
+      "score_range": "2-2",
+      "data_level": "Limited",
+      "concerns": [
+        {
+          "concern": "One or more human case studies show equivocal dermal or allergenic effects",
+          "reference": "Allergic contact dermatitis caused by ethylhexylglycerin in both an ointment and a skin aerosol(2016-03-01)"
+        },
+        {
+          "concern": "One or more human case studies show possible dermal or allergenic effects",
+          "reference": "Ethylhexylglycerin: a low-risk, but highly relevant, sensitizer in 'hypo-allergenic' cosmetics(2016-05-01)"
+        },
+        {
+          "concern": "One or more human case studies show equivocal dermal or allergenic effects",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Possible human eye irritant",
+          "reference": "EU GHS Hazard Labeling Codes"
+        },
+        {
+          "concern": "Classified as any irritant",
+          "reference": "EU GHS Hazard Labeling Codes"
+        },
+        {
+          "concern": "One or more animal studies show respiratory irritation at moderate doses",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "One or more animal studies show eye irritation at low doses",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "One or more animal studies show skin irritation at moderate doses",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Wildlife and environmental toxicity",
+          "reference": "EU GHS Hazard Labeling Codes"
+        },
+        {
+          "concern": "Limited evidence of eye toxicity",
+          "reference": "EU GHS Hazard Labeling Codes"
+        },
+        {
+          "concern": "One or more animal studies show liver effects at low doses",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Dextrin",
+    "corrected": "Dextrin",
+    "match_type": "exact",
+    "info": {
+      "name": "DEXTRIN",
+      "url": "https://www.ewg.org/skindeep/ingredients/701900-DEXTRIN/",
+      "score_range": "1-1",
+      "data_level": "Fair",
+      "concerns": [
+        {
+          "concern": "Designated as safe for general or specific, limited use in food",
+          "reference": "US Food and Drug Administration (FDA)"
+        },
+        {
+          "concern": "Classified as not expected to be potentially toxic or harmful",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Classified as a low human health priority",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be an environmental toxin",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Pentylene Glycol",
+    "corrected": "Pentylene Glycol",
+    "match_type": "exact",
+    "info": {
+      "name": "PENTYLENE GLYCOL",
+      "url": "https://www.ewg.org/skindeep/ingredients/704753-PENTYLENE_GLYCOL/",
+      "score_range": "1-1",
+      "data_level": "Limited",
+      "concerns": [
+        {
+          "concern": "Risk assessment method deficiencies and data gaps - Maximum reported 'as used' concentration is basis of safety assessment by industry safety panel (Cosmetic Ingredient Review, CIR) - implicit safe concentration limit in product",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Penetration enhancer",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "One or more animal studies show eye irritation at high doses",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Limited evidence of eye irritation",
+          "reference": "European Chemicals Agency (ECHA)"
+        },
+        {
+          "concern": "One or more human case studies show possible immune system or allergenic effects",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Octanediol",
+    "corrected": "PROPANEDIOL",
+    "match_type": "fuzzy",
+    "info": {
+      "name": "PROPANEDIOL",
+      "url": "https://www.ewg.org/skindeep/ingredients/723043-PROPANEDIOL/",
+      "score_range": "2-2",
+      "data_level": "Fair",
+      "concerns": [
+        {
+          "concern": "Classified as not expected to be potentially toxic or harmful",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be persistent",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be bioaccumulative",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be an environmental toxin",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Limited evidence of  irritation",
+          "reference": "European Chemicals Agency (ECHA)"
+        },
+        {
+          "concern": "Classified as skin irritant",
+          "reference": "US National Library of Medicine,"
+        },
+        {
+          "concern": "Limited evidence of skin irritation",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "One or more studies show weak endocrine disruption",
+          "reference": "National Toxicology Program (NTP)"
+        },
+        {
+          "concern": "Penetration enhancer",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "One or more in vitro tests on mammalian cells show positive mutation results",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Tocopherol",
+    "corrected": "Tocopherol",
+    "match_type": "exact",
+    "info": {
+      "name": "TOCOPHEROL",
+      "url": "https://www.ewg.org/skindeep/ingredients/706564-TOCOPHEROL/",
+      "score_range": "1-2",
+      "data_level": "Fair",
+      "concerns": [
+        {
+          "concern": "One or more animal studies show tumor formation at high doses",
+          "reference": "Initiation of a transplantable fibrosarcoma by the synergism of two non-initiators, alpha-tocopherol and soya oil(1985-01-01)"
+        },
+        {
+          "concern": "One or more animal studies show tumor formation at high doses",
+          "reference": "Induction of transplantable tumors by repeated subcutaneous injections of natural and synthetic vitamin E in mice and rats(1991-01-01)"
+        },
+        {
+          "concern": "Cancer - weight of evidence unknown/unassessed",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Risk assessment method deficiencies and data gaps - Maximum reported 'as used' concentration is basis of safety assessment by industry safety panel (Cosmetic Ingredient Review, CIR) - implicit safe concentration limit in product",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Designated as safe for general or specific, limited use in food",
+          "reference": "US Food and Drug Administration (FDA)"
+        },
+        {
+          "concern": "Classified as not expected to be potentially toxic or harmful",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be bioaccumulative",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be an environmental toxin",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "One or more human case studies show equivocal immune system or allergenic effects",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Limited evidence of dermal toxicity or allergies",
+          "reference": "European Chemicals Agency (ECHA)"
+        },
+        {
+          "concern": "Associated with endocrine disruption",
+          "reference": "National Toxicology Program (NTP)"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Xanthan Gum",
+    "corrected": "Xanthan Gum",
+    "match_type": "exact",
+    "info": {
+      "name": "XANTHAN GUM",
+      "url": "https://www.ewg.org/skindeep/ingredients/706998-XANTHAN_GUM/",
+      "score_range": "1-1",
+      "data_level": "Fair",
+      "concerns": [
+        {
+          "concern": "Designated as safe for general or specific, limited use in food",
+          "reference": "US Food and Drug Administration (FDA)"
+        },
+        {
+          "concern": "Classified as not expected to be potentially toxic or harmful",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Classified as a low human health priority",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be an environmental toxin",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Carbomer",
+    "corrected": "Carbomer",
+    "match_type": "exact",
+    "info": {
+      "name": "CARBOMER",
+      "url": "https://www.ewg.org/skindeep/ingredients/701088-CARBOMER/",
+      "score_range": "1-2",
+      "data_level": "Fair",
+      "concerns": [
+        {
+          "concern": "Risk assessment method deficiencies and data gaps - Maximum reported 'as used' concentration is basis of safety assessment by industry safety panel (Cosmetic Ingredient Review, CIR) - implicit safe concentration limit in product",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Industry or government recommendations for safe use: restrictions on concentration, impurities, product types, or manufacturing methods - any",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        },
+        {
+          "concern": "Classified as not expected to be potentially toxic or harmful",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be bioaccumulative",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "Not suspected to be an environmental toxin",
+          "reference": "Environment Canada"
+        },
+        {
+          "concern": "skin/eye/lung irritation - weight of evidence unknown/unassessed",
+          "reference": "Cosmetic Ingredient Review (CIR)"
+        }
+      ]
+    }
+  },
+  {
+    "original": "Theobroma Cacao(Cocoa) Seed Extract Melaleuca Alternifolia (Tea Tree Ext ract",
+    "corrected": null,
+    "match_type": "no_match"
+  }
+]

@@ -1,0 +1,66 @@
+IDEAS:
+
+Does not have to be perfect, just good enough. 
+Shitty pictures give shitty results and it is what it is - just give them a chance to add words.
+The OCR likely has bounding boxes which show what part of the text was used, include that for missed words, if any. 
+
+
+
+
+
+
+
+
+Hello, I want to build a product ingredient parser in Python. Lets start very simple, with minimal amount of functions and parameters.
+
+So far it converts an image to text and then parses the ingredients, searching for each ingredient in a website. 
+
+I have some simple code for trying to find the best match but its quite rudimentary. 
+
+For instance, when searching for "Aqua" it outputs all of these results:
+
+MARIS AQUA
+
+MENTHA AQUATICA (WATER MINT) LEAF EXTRACT
+
+APHANIZOMENON FLOSAQUAE EXTRACT
+
+AQUAMARINE POWDER
+
+ALISMA PLANTAGO AQUATICA EXTRACT
+
+PARAQUAT DICHLORIDE
+
+None of these are purely 'Aqua' so it should simply omit them and return None. 
+
+An other case is when the image2text generator combines two words, like this:
+
+"Alcohol Denat. Butyl Methoxydiben- zoylmethane"
+
+The two ingredients are:
+
+"Alcohol Denat." which is actually "Alcohol Denatured" 
+
+and
+
+"Butyl Methoxydiben- zoylmethane" which is actually "Butyl Methoxydibenzoylmethane" BUT when searching for it on the website it reurns "Butylphenyl Methoxydibenzoylmethane"
+
+ 
+
+So its a somewhat complex problem and we've determined a few types of errors.
+
+Ingredient list: Can have abbreviated words. 
+
+Image2Text is not always accurate, combining or omitting ingredients or just plainly outputting the wrong word/letters.
+
+The website Search Engine does not list the desired ingredient or outputs similar ingredients which are very similar but not quite correct and thus should be omitted. 
+
+I believe Ive identified possible solutions to this issue. 
+
+Abbreviated ingredients like 
+
+
+
+
+
+

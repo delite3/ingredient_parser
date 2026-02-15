@@ -1,0 +1,637 @@
+{
+  "generated_at": "2026-02-14",
+  "engine": "easyocr",
+  "total_images": 11,
+  "images": {
+    "image0": {
+      "file": "product_images/image0.jpeg",
+      "ocr_lines_detected": 1,
+      "ingredient_header_detected": false,
+      "stop_section_detected": false,
+      "ocr_confidence": {
+        "mean": 0.479,
+        "median": 0.479,
+        "min": 0.479,
+        "max": 0.479
+      },
+      "ingredients_extracted_count": 0,
+      "ingredients_extracted": [],
+      "noise_flags": [],
+      "quality_flag": "poor",
+      "best_window_preview": ""
+    },
+    "image1": {
+      "file": "product_images/image1.jpeg",
+      "ocr_lines_detected": 3,
+      "ingredient_header_detected": false,
+      "stop_section_detected": false,
+      "ocr_confidence": {
+        "mean": 0.2939,
+        "median": 0.298,
+        "min": 0.2526,
+        "max": 0.331
+      },
+      "ingredients_extracted_count": 1,
+      "ingredients_extracted": [
+        "L L L"
+      ],
+      "noise_flags": [
+        {
+          "ingredient": "L L L",
+          "reason": "isolated_single_letter"
+        }
+      ],
+      "quality_flag": "poor",
+      "best_window_preview": "L L L"
+    },
+    "image2": {
+      "file": "product_images/image2.jpeg",
+      "ocr_lines_detected": 35,
+      "ingredient_header_detected": true,
+      "stop_section_detected": true,
+      "ocr_confidence": {
+        "mean": 0.7004,
+        "median": 0.7116,
+        "min": 0.3025,
+        "max": 0.9994
+      },
+      "ingredients_extracted_count": 31,
+      "ingredients_extracted": [
+        "Gigredients Propolis Extract",
+        "Dipropylene Glcol",
+        "Glycerin",
+        "Butvlene Glycol Water",
+        "Niacinamide",
+        "2 4 Niacinamide H H ~Hexanediol",
+        "L ~Hexanediol Melia Azadirachta Flower Extract",
+        "M Melia Azadirachta Flower Extract M Extract",
+        "M L elia Azadirachta Leaf Extract",
+        "Sodium Hyaluronate",
+        "Curcuma Longa (Turmeric) Root Extract",
+        "Ocimu Sanctum Leaf Extract",
+        "Theobroma Cacao (Coc Seed Extract",
+        "Seed Extract",
+        "Melaleuca Alternifolia (Tea Tr Alternifolia (Tea Tree) Ext",
+        "H ract",
+        "Centela ract",
+        "Centela Asiatica Extract",
+        "Coralina Officinalis Extract",
+        "Lotus Corniculatus Seed Extra L vllum Inophyllum Seed Oil",
+        "Betaine Sa wnip dium Polyacryloyldimethyl Taurate",
+        "Trome 2 Eth",
+        "Vinex",
+        "Polyglyceryl-10 Laurate",
+        "Caprylyl Glycol Eth H ylglycerin",
+        "Dextrin",
+        "Pentvlene Glycol",
+        "Octanediol",
+        "Deanthaneguyerar 0 Tocopherol",
+        "Xanthan Gum",
+        "Carbomer"
+      ],
+      "noise_flags": [
+        {
+          "ingredient": "2 4 Niacinamide H H ~Hexanediol",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "2 4 Niacinamide H H ~Hexanediol",
+          "reason": "unusual_symbol"
+        },
+        {
+          "ingredient": "L ~Hexanediol Melia Azadirachta Flower Extract",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "L ~Hexanediol Melia Azadirachta Flower Extract",
+          "reason": "unusual_symbol"
+        },
+        {
+          "ingredient": "M Melia Azadirachta Flower Extract M Extract",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "M L elia Azadirachta Leaf Extract",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "H ract",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Lotus Corniculatus Seed Extra L vllum Inophyllum Seed Oil",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Polyglyceryl-10 Laurate",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "Caprylyl Glycol Eth H ylglycerin",
+          "reason": "isolated_single_letter"
+        }
+      ],
+      "quality_flag": "good",
+      "best_window_preview": "Gigredients Propolis Extract; Dipropylene Glcol; Glycerin; Butvlene Glycol Water; Niacinamide; 1,2 4 Niacinamide H H ~Hexanediol, L ~Hexanediol Melia Azadirachta Flower Extract; M Melia Azadirachta Flower Extract M Extract;M L elia Azadirachta Leaf E"
+    },
+    "image3": {
+      "file": "product_images/image3.jpeg",
+      "ocr_lines_detected": 49,
+      "ingredient_header_detected": true,
+      "stop_section_detected": false,
+      "ocr_confidence": {
+        "mean": 0.7721,
+        "median": 0.8844,
+        "min": 0.2598,
+        "max": 0.9999
+      },
+      "ingredients_extracted_count": 3,
+      "ingredients_extracted": [
+        "H 3 33 38 E Di 9 8 E 6 M E2 2 8 Oxi Dimethicone",
+        "8 sium 32 Alu 2 2 524 3 Alumina Potassium Alumina 13 8 2 3 83 2 ty Oxides",
+        "3 Adeno 3 E 5 Pal Dimethi 4 33 E"
+      ],
+      "noise_flags": [
+        {
+          "ingredient": "H 3 33 38 E Di 9 8 E 6 M E2 2 8 Oxi Dimethicone",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "H 3 33 38 E Di 9 8 E 6 M E2 2 8 Oxi Dimethicone",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "8 sium 32 Alu 2 2 524 3 Alumina Potassium Alumina 13 8 2 3 83 2 ty Oxides",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "3 Adeno 3 E 5 Pal Dimethi 4 33 E",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "3 Adeno 3 E 5 Pal Dimethi 4 33 E",
+          "reason": "isolated_single_letter"
+        }
+      ],
+      "quality_flag": "poor",
+      "best_window_preview": "INGREDIENTS H 3 33 38 E Di 9 8 E 6 M E2 2 8 Oxi Dimethicone; 8 sium 32 Alu 2 2 524 3 Alumina Potassium Alumina 13 8 2 3 83 2 ty Oxides, 3 Adeno 3 E 5 Pal Dimethi 4 33 E"
+    },
+    "image4": {
+      "file": "product_images/image4.jpeg",
+      "ocr_lines_detected": 15,
+      "ingredient_header_detected": true,
+      "stop_section_detected": false,
+      "ocr_confidence": {
+        "mean": 0.6649,
+        "median": 0.6825,
+        "min": 0.3298,
+        "max": 1.0
+      },
+      "ingredients_extracted_count": 11,
+      "ingredients_extracted": [
+        "PENTAERYTHRITYL TETRAISO ETHYLHEXYL POLYACYLADIPATE 2",
+        "CERESIN",
+        "POLYETHY TOCOPHERYL ACETATE",
+        "COCOS NUCIFER PARFUM PHENOXYETHANOL",
+        "0 LIMONENE",
+        "CITRAL",
+        "Cl 77891(TITANI CITRAL",
+        "CI 77891(TITANIUM DIOXIDEL (COCONut) OIL",
+        "F Ci 71492IRON OXIDESI Ci 77491(IRON OXiDES)",
+        "Ci 77499 (IR Ci 77492(IRON OXIDES)",
+        "CI 77491(IRON CI 77499 (IRON OXIDES)"
+      ],
+      "noise_flags": [
+        {
+          "ingredient": "Cl 77891(TITANI CITRAL",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "CI 77891(TITANIUM DIOXIDEL (COCONut) OIL",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "F Ci 71492IRON OXIDESI Ci 77491(IRON OXiDES)",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "F Ci 71492IRON OXIDESI Ci 77491(IRON OXiDES)",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Ci 77499 (IR Ci 77492(IRON OXIDES)",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "CI 77491(IRON CI 77499 (IRON OXIDES)",
+          "reason": "multi_digit_sequence"
+        }
+      ],
+      "quality_flag": "good",
+      "best_window_preview": "INGREDIENTS PENTAERYTHRITYL TETRAISO ETHYLHEXYL POLYACYLADIPATE 2, CERESIN, POLYETHY TOCOPHERYL ACETATE, COCOS NUCIFER PARFUM PHENOXYETHANOL, 0 LIMONENE, CITRAL, Cl 77891(TITANI CITRAL,CI 77891(TITANIUM DIOXIDEL (COCONut) OIL, F Ci 71492IRON OXIDESI "
+    },
+    "product_label1": {
+      "file": "product_images/product_label1.jpg",
+      "ocr_lines_detected": 54,
+      "ingredient_header_detected": false,
+      "stop_section_detected": false,
+      "ocr_confidence": {
+        "mean": 0.7283,
+        "median": 0.788,
+        "min": 0.2685,
+        "max": 0.9999
+      },
+      "ingredients_extracted_count": 22,
+      "ingredients_extracted": [
+        "Aqua",
+        "C12-15 # Benzoate",
+        "Alcohol I Denat",
+        "Butyl Methoxydiben",
+        "zoylmethane Butylene 7 Dicaprylate/Dicaprate",
+        "hexyl Triazone Bis-Ethylhexy",
+        "hexyl Triazone",
+        "M H H Ii Dibutyl Diethylamino H E Stearat",
+        "Becioate H Stearate Citrate Phenyk",
+        "benzimidazole Sullonic benzimidazole Sulionic Acid",
+        "36 Silica Tapioca Starch",
+        "Alcohol",
+        "Cetearyl H Sicohob Silica Dimethyl Silylate",
+        "Carnitine",
+        "Inflata 2 3 37 M Acid",
+        "Clycerin",
+        "Root Dimethicone",
+        "Copernicia Cerifera Cera",
+        "M Methykcellulose Xanthan 3 Gum",
+        "Sodium E \"gognipo Hydroxide",
+        "Trisodium EDTA",
+        "1 H U hexylghcerin"
+      ],
+      "noise_flags": [
+        {
+          "ingredient": "C12-15 # Benzoate",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "C12-15 # Benzoate",
+          "reason": "unusual_symbol"
+        },
+        {
+          "ingredient": "Alcohol I Denat",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "M H H Ii Dibutyl Diethylamino H E Stearat",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Becioate H Stearate Citrate Phenyk",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "36 Silica Tapioca Starch",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "Cetearyl H Sicohob Silica Dimethyl Silylate",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Inflata 2 3 37 M Acid",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "Inflata 2 3 37 M Acid",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "M Methykcellulose Xanthan 3 Gum",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Sodium E \"gognipo Hydroxide",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Sodium E \"gognipo Hydroxide",
+          "reason": "unusual_symbol"
+        },
+        {
+          "ingredient": "1 H U hexylghcerin",
+          "reason": "isolated_single_letter"
+        }
+      ],
+      "quality_flag": "good",
+      "best_window_preview": "Aqua, C12-15 # Benzoate, Alcohol I Denat , Butyl Methoxydiben; ] zoylmethane Butylene 7 Dicaprylate/Dicaprate; hexyl Triazone Bis-Ethylhexy; hexyl Triazone; M H H Ii Dibutyl Diethylamino H E StearatBecioate H Stearate Citrate Phenyk: benzimidazole Su"
+    },
+    "product_label2": {
+      "file": "product_images/product_label2.jpg",
+      "ocr_lines_detected": 55,
+      "ingredient_header_detected": false,
+      "stop_section_detected": false,
+      "ocr_confidence": {
+        "mean": 0.6157,
+        "median": 0.5875,
+        "min": 0.2623,
+        "max": 0.9968
+      },
+      "ingredients_extracted_count": 2,
+      "ingredients_extracted": [
+        "1 [ 1 F 8 CETEARYL ALCOHOL ' COCAMIDOPROPYLE 1 Tz 1 0 0 1 ] H H 1 8 HYDROXYPROPYL Guar H 0 TRIdECETH-6 V L 37 0 ' 0 2 0 LIMONENE 'JNJNOWI7 0 0 0 1 8 0 E 1 0 102479 \" ZN7Ad",
+        "Odd 2 A W ] CeTRIMONUM 8229 H . H 0a 778 ' 1 1"
+      ],
+      "noise_flags": [
+        {
+          "ingredient": "1 [ 1 F 8 CETEARYL ALCOHOL ' COCAMIDOPROPYLE 1 Tz 1 0 0 1 ] H H 1 8 HYDROXYPROPYL Guar H 0 TRIdECETH-6 V L 37 0 ' 0 2 0 LIMONENE 'JNJNOWI7 0 0 0 1 8 0 E 1 0 102479 \" ZN7Ad",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "1 [ 1 F 8 CETEARYL ALCOHOL ' COCAMIDOPROPYLE 1 Tz 1 0 0 1 ] H H 1 8 HYDROXYPROPYL Guar H 0 TRIdECETH-6 V L 37 0 ' 0 2 0 LIMONENE 'JNJNOWI7 0 0 0 1 8 0 E 1 0 102479 \" ZN7Ad",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "1 [ 1 F 8 CETEARYL ALCOHOL ' COCAMIDOPROPYLE 1 Tz 1 0 0 1 ] H H 1 8 HYDROXYPROPYL Guar H 0 TRIdECETH-6 V L 37 0 ' 0 2 0 LIMONENE 'JNJNOWI7 0 0 0 1 8 0 E 1 0 102479 \" ZN7Ad",
+          "reason": "unusual_symbol"
+        },
+        {
+          "ingredient": "Odd 2 A W ] CeTRIMONUM 8229 H . H 0a 778 ' 1 1",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "Odd 2 A W ] CeTRIMONUM 8229 H . H 0a 778 ' 1 1",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Odd 2 A W ] CeTRIMONUM 8229 H . H 0a 778 ' 1 1",
+          "reason": "unusual_symbol"
+        }
+      ],
+      "quality_flag": "poor",
+      "best_window_preview": "1 [ 1 F 8 CETEARYL ALCOHOL ' COCAMIDOPROPYLE 1 Tz 1 0 0 1 ] H H 1 8 HYDROXYPROPYL Guar H 0 TRIdECETH-6 V L 37 0 ' 0 2 0 LIMONENE 'JNJNOWI7 0 0 0 1 8 0 E 1 0 102479 \" ZN7AdOdd 2 A W ] CeTRIMONUM 8229 H @ H 0a 778 ' 1 1"
+    },
+    "product_label3": {
+      "file": "product_images/product_label3.jpg",
+      "ocr_lines_detected": 43,
+      "ingredient_header_detected": true,
+      "stop_section_detected": false,
+      "ocr_confidence": {
+        "mean": 0.735,
+        "median": 0.8227,
+        "min": 0.2911,
+        "max": 0.9999
+      },
+      "ingredients_extracted_count": 23,
+      "ingredients_extracted": [
+        "Aqua",
+        "Sodium Lauroyl Methyl Tsethion Ingredients",
+        "Ingredients",
+        "Aqua",
+        "Sodium Lauroyl M 1 enb Sodium Lauroyl Methyl Isethionate",
+        "Caprylyl/Capryl Glucoside Hamamelis Virgin Water",
+        "Glycerin",
+        "Guar Hydroxypropyltrimo L L Chloride",
+        "Lactitol",
+        "Xylitol",
+        "Glyceryl Oleate",
+        "La L Glucoside Aniba Rosaeodora Wood Oil",
+        "Pinus Syl 2 L Helianthus Annuus Seed Helianthus Annuus Seed Oil",
+        "Sorbic A 8 Sorbic",
+        "Acid Parfum",
+        "Amyris Balsamifera Bark Oil",
+        "Rosmar L 1 0 Leaf Oil",
+        "Lavandula Angustifolia Oil",
+        "Cupressus N 3 Funebris Wood Oil",
+        "Santalum Oi Linalool Limonene Lactic Acid Gitric Oil",
+        "Linalool",
+        "Limonene Lactic A 1 Acid",
+        "Sodium Benzoate Pota"
+      ],
+      "noise_flags": [
+        {
+          "ingredient": "Sodium Lauroyl M 1 enb Sodium Lauroyl Methyl Isethionate",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Guar Hydroxypropyltrimo L L Chloride",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "La L Glucoside Aniba Rosaeodora Wood Oil",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Pinus Syl 2 L Helianthus Annuus Seed Helianthus Annuus Seed Oil",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Sorbic A 8 Sorbic",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Rosmar L 1 0 Leaf Oil",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Cupressus N 3 Funebris Wood Oil",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Limonene Lactic A 1 Acid",
+          "reason": "isolated_single_letter"
+        }
+      ],
+      "quality_flag": "good",
+      "best_window_preview": "Ingredients; Aqua; Sodium Lauroyl Methyl Tsethion Ingredients: Ingredients: Aqua, Sodium Lauroyl M 1 enb Sodium Lauroyl Methyl Isethionate; Caprylyl/Capryl Glucoside Hamamelis Virgin Water; Glycerin; Guar Hydroxypropyltrimo L L Chloride; Lactitol, Xy"
+    },
+    "product_label4": {
+      "file": "product_images/product_label4.jpg",
+      "ocr_lines_detected": 16,
+      "ingredient_header_detected": false,
+      "stop_section_detected": false,
+      "ocr_confidence": {
+        "mean": 0.8358,
+        "median": 0.9411,
+        "min": 0.5232,
+        "max": 0.9994
+      },
+      "ingredients_extracted_count": 2,
+      "ingredients_extracted": [
+        "1 wnipos Sodium Sodium Laureth H # # 0 1 Sorbic / Sorbic Acid",
+        "pH 4.4 pH Hd 2 1 skin neutral)"
+      ],
+      "noise_flags": [
+        {
+          "ingredient": "1 wnipos Sodium Sodium Laureth H # # 0 1 Sorbic / Sorbic Acid",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "1 wnipos Sodium Sodium Laureth H # # 0 1 Sorbic / Sorbic Acid",
+          "reason": "unusual_symbol"
+        }
+      ],
+      "quality_flag": "poor",
+      "best_window_preview": "1 wnipos Sodium Sodium Laureth H # # 0 1 Sorbic / Sorbic Acid: pH 4.4 pH Hd 2 1 skin neutral)"
+    },
+    "product_label5": {
+      "file": "product_images/product_label5.jpg",
+      "ocr_lines_detected": 35,
+      "ingredient_header_detected": false,
+      "stop_section_detected": false,
+      "ocr_confidence": {
+        "mean": 0.7118,
+        "median": 0.7151,
+        "min": 0.2892,
+        "max": 0.9998
+      },
+      "ingredients_extracted_count": 29,
+      "ingredients_extracted": [
+        "lauril- Iml",
+        "Ketoconazol. 20 mg",
+        "natr",
+        "lauril- Iml",
+        "Ketoconazol. 20 mg",
+        "natr",
+        "aether sulf",
+        "dinatr. monolaurilaether cocos diethanol- 1 1 1 amid",
+        "laurdimon hydr animal collag",
+        "amid",
+        "laurdimon",
+        "hydr",
+        "animal diold",
+        "glucos. dioleat",
+        "120 methyl 8 1 H HU 8 acid",
+        "natr",
+        "PIXOIPAY \"nu natr",
+        "hydroxid",
+        "L natr",
+        "chlorid",
+        "conservans natr",
+        "chlorid",
+        "conservans (imidurea)",
+        "natr",
+        "conservans (imidurea)",
+        "color (E 127) et aq",
+        "purif",
+        "purif",
+        "Jund \"sb"
+      ],
+      "noise_flags": [
+        {
+          "ingredient": "Ketoconazol. 20 mg",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "Ketoconazol. 20 mg",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "120 methyl 8 1 H HU 8 acid",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "120 methyl 8 1 H HU 8 acid",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "PIXOIPAY \"nu natr",
+          "reason": "unusual_symbol"
+        },
+        {
+          "ingredient": "L natr",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "color (E 127) et aq",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "color (E 127) et aq",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Jund \"sb",
+          "reason": "unusual_symbol"
+        }
+      ],
+      "quality_flag": "good",
+      "best_window_preview": "lauril- Iml: Ketoconazol. 20 mg, natr: lauril- Iml: Ketoconazol. 20 mg; natr: aether sulf , dinatr. monolaurilaether cocos diethanol- 1 1 1 amid, laurdimon hydr animal collag; amid, laurdimon: hydr: animal diold; glucos. dioleat , } 120 methyl 8 1 H "
+    },
+    "product_label6": {
+      "file": "product_images/product_label6.jpg",
+      "ocr_lines_detected": 44,
+      "ingredient_header_detected": true,
+      "stop_section_detected": false,
+      "ocr_confidence": {
+        "mean": 0.6262,
+        "median": 0.6152,
+        "min": 0.2557,
+        "max": 0.9998
+      },
+      "ingredients_extracted_count": 8,
+      "ingredients_extracted": [
+        "Aqua INGREDIENTS",
+        "Aqua (Water) 1 Alcohol",
+        "Cetrimonium Chloride Mpyoqv H Behentrimonium [ } PPG-3 Benzyl Eter Hyristaz 1 3 53 H H Castor 3 W = # 5 E Esters",
+        "1 Fajum ! 1 Guar # H 7 H 2 H Acid",
+        "Dehydroacetic Acid",
+        "H M # 5900 4 I Linalool",
+        "Eugenol Limonene",
+        "Tocopherol \" H 1"
+      ],
+      "noise_flags": [
+        {
+          "ingredient": "Cetrimonium Chloride Mpyoqv H Behentrimonium [ } PPG-3 Benzyl Eter Hyristaz 1 3 53 H H Castor 3 W = # 5 E Esters",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "Cetrimonium Chloride Mpyoqv H Behentrimonium [ } PPG-3 Benzyl Eter Hyristaz 1 3 53 H H Castor 3 W = # 5 E Esters",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Cetrimonium Chloride Mpyoqv H Behentrimonium [ } PPG-3 Benzyl Eter Hyristaz 1 3 53 H H Castor 3 W = # 5 E Esters",
+          "reason": "unusual_symbol"
+        },
+        {
+          "ingredient": "1 Fajum ! 1 Guar # H 7 H 2 H Acid",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "1 Fajum ! 1 Guar # H 7 H 2 H Acid",
+          "reason": "unusual_symbol"
+        },
+        {
+          "ingredient": "H M # 5900 4 I Linalool",
+          "reason": "multi_digit_sequence"
+        },
+        {
+          "ingredient": "H M # 5900 4 I Linalool",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "H M # 5900 4 I Linalool",
+          "reason": "unusual_symbol"
+        },
+        {
+          "ingredient": "Tocopherol \" H 1",
+          "reason": "isolated_single_letter"
+        },
+        {
+          "ingredient": "Tocopherol \" H 1",
+          "reason": "unusual_symbol"
+        }
+      ],
+      "quality_flag": "good",
+      "best_window_preview": "INGREDIENTS; Aqua INGREDIENTS: Aqua (Water) 1 Alcohol; Cetrimonium Chloride Mpyoqv H Behentrimonium [ } PPG-3 Benzyl Eter Hyristaz 1 3 53 H H Castor 3 W = # 5 E Esters; 1 Fajum ! 1 Guar # H 7 H 2 H Acid; Dehydroacetic Acid, H M # 5900 4 I Linalool, E"
+    }
+  },
+  "summary": {
+    "avg_ingredients_per_image": 12,
+    "median_ingredients_per_image": 8,
+    "avg_ocr_confidence_mean": 0.6512,
+    "ingredient_header_detect_rate": 0.4545,
+    "quality_breakdown": {
+      "good": 6,
+      "needs_review": 0,
+      "poor": 5
+    }
+  }
+}

@@ -1,0 +1,53 @@
+Traceback (most recent call last):
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/ocr_pipeline.py", line 114, in extract_text_detections
+    result = ocr.ocr(image, cls=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/.venv/lib/python3.12/site-packages/typing_extensions.py", line 3004, in wrapper
+    return arg(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/.venv/lib/python3.12/site-packages/paddleocr/_pipelines/ocr.py", line 231, in ocr
+    return self.predict(img, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PaddleOCR.predict() got an unexpected keyword argument 'cls'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/test_runner.py", line 20, in main
+    ingredients, raw_text, method = extract_ingredient_list(img)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/ocr_pipeline.py", line 187, in extract_ingredient_list
+    detections = extract_text_detections(img, ocr=ocr)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/ocr_pipeline.py", line 117, in extract_text_detections
+    result = ocr.ocr(image)
+             ^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/.venv/lib/python3.12/site-packages/typing_extensions.py", line 3004, in wrapper
+    return arg(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/.venv/lib/python3.12/site-packages/paddleocr/_pipelines/ocr.py", line 231, in ocr
+    return self.predict(img, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/.venv/lib/python3.12/site-packages/paddleocr/_pipelines/ocr.py", line 213, in predict
+    return list(
+           ^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/.venv/lib/python3.12/site-packages/paddlex/inference/pipelines/_parallel.py", line 139, in predict
+    yield from self._pipeline.predict(
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/.venv/lib/python3.12/site-packages/paddlex/inference/pipelines/ocr/pipeline.py", line 357, in predict
+    det_results = list(
+                  ^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/.venv/lib/python3.12/site-packages/paddlex/inference/models/base/predictor/base_predictor.py", line 281, in __call__
+    yield from self.apply(input, **kwargs)
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/.venv/lib/python3.12/site-packages/paddlex/inference/models/base/predictor/base_predictor.py", line 338, in apply
+    prediction = self.process(batch_data, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/.venv/lib/python3.12/site-packages/paddlex/inference/models/text_detection/predictor.py", line 133, in process
+    batch_preds = self.infer(x=x)
+                  ^^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/.venv/lib/python3.12/site-packages/paddlex/inference/models/common/static_infer.py", line 298, in __call__
+    pred = self.infer(x)
+           ^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/.venv/lib/python3.12/site-packages/paddlex/inference/models/common/static_infer.py", line 261, in __call__
+    self.predictor.run()
+NotImplementedError: (Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at /paddle/paddle/fluid/framework/new_executor/instruction/onednn/onednn_instruction.cc:116)
+

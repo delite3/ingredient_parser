@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/test_runner.py", line 20, in main
+    ingredients, raw_text, method = extract_ingredient_list(img)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/ocr_pipeline.py", line 183, in extract_ingredient_list
+    detections = extract_text_detections(img, ocr=ocr)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/ocr_pipeline.py", line 113, in extract_text_detections
+    result = ocr.ocr(image, cls=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/venv/lib/python3.12/site-packages/typing_extensions.py", line 3004, in wrapper
+    return arg(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/hda/GIT/IngredientParsers/ingredients_parser_0.312/venv/lib/python3.12/site-packages/paddleocr/_pipelines/ocr.py", line 231, in ocr
+    return self.predict(img, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PaddleOCR.predict() got an unexpected keyword argument 'cls'
