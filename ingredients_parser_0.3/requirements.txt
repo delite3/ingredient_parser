@@ -1,8 +1,0 @@
-
-
-opencv-python
-setuptools
-paddlepaddle
-paddleocr
-beautifulsoup4
-Levenshtein
