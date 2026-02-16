@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, FlatList, ActivityIndicator, Image, Linking } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 
@@ -9,16 +9,49 @@ export default function App() {
   const [scannedItems, setScannedItems] = useState([]);
   const [manualInput, setManualInput] = useState('');
   const [scanned, setScanned] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  // Add barcode to history
-  const addBarcode = (type, data) => {
+  // Lookup product information from APIs
+  const lookupProduct = async (barcode) => {
+    try {
+      // Try Open Food Facts first (great for food products)
+      const offResponse = await fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode}.json`);
+      const offData = await offResponse.json();
+      
+      if (offData.status === 1 && offData.product) {
+        return {
+          name: offData.product.product_name || 'Unknown Product',
+          brand: offData.product.brands || '',
+          image: offData.product.image_url || offData.product.image_front_url || null,
+          source: 'Open Food Facts',
+        };
+      }
+      
+      // Fallback: could add more APIs here
+      return null;
+    } catch (error) {
+      console.log('Lookup error:', error);
+      return null;
+    }
+  };
+
+  // Add barcode to history with product lookup
+  const addBarcode = async (type, data) => {
+    setLoading(true);
+    
+    // Lookup product info
+    const productInfo = await lookupProduct(data);
+    
     const newItem = {
       id: Date.now().toString(),
       type: type,
       data: data,
       timestamp: new Date().toLocaleString(),
+      product: productInfo,
     };
+    
     setScannedItems([newItem, ...scannedItems]);
+    setLoading(false);
   };
 
   // Handle barcode scan (no cooldown, no alert)
@@ -60,6 +93,14 @@ export default function App() {
         <Text style={styles.secondaryButtonText}>Enter Manually</Text>
       </TouchableOpacity>
 
+      {/* Loading Indicator */}
+      {loading && (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#00ff88" />
+          <Text style={styles.loadingText}>Looking up product...</Text>
+        </View>
+      )}
+
       {/* Last Scanned List */}
       {scannedItems.length > 0 && (
         <View style={styles.historyContainer}>
@@ -68,13 +109,43 @@ export default function App() {
             data={scannedItems}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <View style={styles.historyItem}>
-                <View style={styles.historyItemHeader}>
-                  <Text style={styles.historyType}>{item.type.toUpperCase()}</Text>
-                  <Text style={styles.historyTime}>{item.timestamp}</Text>
+              <TouchableOpacity 
+                style={styles.historyItem}
+                onPress={() => item.data && Linking.openURL(`https://go-upc.com/search?q=${item.data}`)}
+              >
+                <View style={styles.historyItemContent}>
+                  {item.product?.image && (
+                    <Image 
+                      source={{ uri: item.product.image }} 
+                      style={styles.productImage}
+                      resizeMode="cover"
+                    />
+                  )}
+                  <View style={styles.historyItemText}>
+                    <View style={styles.historyItemHeader}>
+                      <Text style={styles.historyType}>{item.type.toUpperCase()}</Text>
+                      <Text style={styles.historyTime}>{item.timestamp}</Text>
+                    </View>
+                    
+                    {item.product ? (
+                      <>
+                        <Text style={styles.productName}>{item.product.name}</Text>
+                        {item.product.brand && (
+                          <Text style={styles.productBrand}>{item.product.brand}</Text>
+                        )}
+                        <Text style={styles.historyData}>{item.data}</Text>
+                        <Text style={styles.productSource}>Source: {item.product.source}</Text>
+                      </>
+                    ) : (
+                      <>
+                        <Text style={styles.historyData}>{item.data}</Text>
+                        <Text style={styles.noProductInfo}>No product info found</Text>
+                      </>
+                    )}
+                  </View>
                 </View>
-                <Text style={styles.historyData}>{item.data}</Text>
-              </View>
+                <Text style={styles.tapHint}>Tap to view on go-upc.com</Text>
+              </TouchableOpacity>
             )}
           />
         </View>
@@ -297,6 +368,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#00ff88',
   },
+  loadingContainer: {
+    backgroundColor: '#16213e',
+    padding: 20,
+    borderRadius: 15,
+    alignItems: 'center',
+    marginBottom: 20,
+    borderWidth: 2,
+    borderColor: '#00ff88',
+  },
+  loadingText: {
+    fontSize: 16,
+    color: '#00ff88',
+    marginTop: 10,
+    fontWeight: '600',
+  },
   historyContainer: {
     width: '100%',
     flex: 1,
@@ -317,6 +403,19 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: '#00ff88',
   },
+  historyItemContent: {
+    flexDirection: 'row',
+  },
+  productImage: {
+    width: 70,
+    height: 70,
+    borderRadius: 8,
+    marginRight: 12,
+    backgroundColor: '#1a1a2e',
+  },
+  historyItemText: {
+    flex: 1,
+  },
   historyItemHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -335,10 +434,41 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: '#666',
   },
-  historyData: {
+  productName: {
     fontSize: 16,
+    fontWeight: 'bold',
     color: '#fff',
-    fontWeight: '500',
+    marginBottom: 4,
+  },
+  productBrand: {
+    fontSize: 14,
+    color: '#00ff88',
+    marginBottom: 4,
+    fontStyle: 'italic',
+  },
+  historyData: {
+    fontSize: 13,
+    color: '#aaa',
+    fontFamily: 'monospace',
+    marginTop: 2,
+  },
+  productSource: {
+    fontSize: 11,
+    color: '#666',
+    marginTop: 4,
+  },
+  noProductInfo: {
+    fontSize: 13,
+    color: '#999',
+    fontStyle: 'italic',
+    marginTop: 4,
+  },
+  tapHint: {
+    fontSize: 11,
+    color: '#00ff88',
+    textAlign: 'center',
+    marginTop: 8,
+    fontStyle: 'italic',
   },
   cameraContainer: {
     flex: 1,
