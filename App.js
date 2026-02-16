@@ -1,15 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, FlatList, ActivityIndicator, Image, Linking } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 
 export default function App() {
   const [permission, requestPermission] = useCameraPermissions();
-  const [screen, setScreen] = useState('home'); // 'home', 'scanner', 'manual'
+  const [screen, setScreen] = useState('home'); // 'home', 'scanner', 'manual', 'history', 'details'
+  const [previousScreen, setPreviousScreen] = useState('home'); // Track where we came from
+  const [activeTab, setActiveTab] = useState('home'); // 'home', 'history'
   const [scannedItems, setScannedItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [manualInput, setManualInput] = useState('');
   const [scanned, setScanned] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [countdown, setCountdown] = useState(0);
+  const countdownTimer = useRef(null);
 
   // Lookup product information from APIs
   const lookupProduct = async (barcode) => {
@@ -19,11 +24,18 @@ export default function App() {
       const offData = await offResponse.json();
       
       if (offData.status === 1 && offData.product) {
+        const product = offData.product;
         return {
-          name: offData.product.product_name || 'Unknown Product',
-          brand: offData.product.brands || '',
-          image: offData.product.image_url || offData.product.image_front_url || null,
+          name: product.product_name || 'Unknown Product',
+          brand: product.brands || '',
+          image: product.image_url || product.image_front_url || null,
           source: 'Open Food Facts',
+          ingredients: product.ingredients_text || null,
+          ingredientsList: product.ingredients || [],
+          nutritionGrade: product.nutrition_grades || null,
+          labels: product.labels || '',
+          categories: product.categories || '',
+          allergens: product.allergens || '',
         };
       }
       
@@ -36,7 +48,7 @@ export default function App() {
   };
 
   // Add barcode to history with product lookup
-  const addBarcode = async (type, data) => {
+  const addBarcode = async (type, data, fromScreen = 'scanner') => {
     setLoading(true);
     
     // Lookup product info
@@ -51,25 +63,69 @@ export default function App() {
     };
     
     setScannedItems([newItem, ...scannedItems]);
+    setSelectedItem(newItem);
     setLoading(false);
+    
+    // Start countdown before auto-navigation (3 seconds)
+    let timeLeft = 3;
+    setCountdown(timeLeft);
+    
+    const timer = setInterval(() => {
+      timeLeft--;
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        // Auto-navigate to details screen after countdown
+        setPreviousScreen(fromScreen);
+        setScreen('details');
+        setActiveTab('home');
+        setScanned(false); // Reset scan state
+        setCountdown(0);
+      } else {
+        setCountdown(timeLeft);
+      }
+    }, 1000);
+    
+    countdownTimer.current = timer;
+  };
+
+  // Cancel scan and undo
+  const cancelScan = () => {
+    if (countdownTimer.current) {
+      clearInterval(countdownTimer.current);
+    }
+    setCountdown(0);
+    setScanned(false);
+    // Remove the last scanned item
+    if (scannedItems.length > 0) {
+      setScannedItems(scannedItems.slice(1));
+    }
   };
 
   // Handle barcode scan (no cooldown, no alert)
   const handleBarCodeScanned = ({ type, data }) => {
-    if (scanned) return;
+    if (scanned || countdown > 0) return;
     
     setScanned(true);
-    addBarcode(type, data);
+    addBarcode(type, data, 'scanner');
   };
 
   // Handle manual entry submission
   const handleManualSubmit = () => {
     if (manualInput.trim()) {
-      addBarcode('manual', manualInput.trim());
+      addBarcode('manual', manualInput.trim(), 'manual');
       setManualInput('');
-      setScreen('home');
+      // addBarcode will navigate to details
     }
   };
+
+  // Clean up timer on unmount
+  useEffect(() => {
+    return () => {
+      if (countdownTimer.current) {
+        clearInterval(countdownTimer.current);
+      }
+    };
+  }, []);
 
   // Render Home Screen
   const renderHomeScreen = () => (
@@ -101,54 +157,11 @@ export default function App() {
         </View>
       )}
 
-      {/* Last Scanned List */}
+      {/* Show count of scanned items */}
       {scannedItems.length > 0 && (
-        <View style={styles.historyContainer}>
-          <Text style={styles.historyTitle}>Last Scanned ({scannedItems.length})</Text>
-          <FlatList
-            data={scannedItems}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <TouchableOpacity 
-                style={styles.historyItem}
-                onPress={() => item.data && Linking.openURL(`https://go-upc.com/search?q=${item.data}`)}
-              >
-                <View style={styles.historyItemContent}>
-                  {item.product?.image && (
-                    <Image 
-                      source={{ uri: item.product.image }} 
-                      style={styles.productImage}
-                      resizeMode="cover"
-                    />
-                  )}
-                  <View style={styles.historyItemText}>
-                    <View style={styles.historyItemHeader}>
-                      <Text style={styles.historyType}>{item.type.toUpperCase()}</Text>
-                      <Text style={styles.historyTime}>{item.timestamp}</Text>
-                    </View>
-                    
-                    {item.product ? (
-                      <>
-                        <Text style={styles.productName}>{item.product.name}</Text>
-                        {item.product.brand && (
-                          <Text style={styles.productBrand}>{item.product.brand}</Text>
-                        )}
-                        <Text style={styles.historyData}>{item.data}</Text>
-                        <Text style={styles.productSource}>Source: {item.product.source}</Text>
-                      </>
-                    ) : (
-                      <>
-                        <Text style={styles.historyData}>{item.data}</Text>
-                        <Text style={styles.noProductInfo}>No product info found</Text>
-                      </>
-                    )}
-                  </View>
-                </View>
-                <Text style={styles.tapHint}>Tap to view on go-upc.com</Text>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
+        <Text style={styles.itemCount}>
+          {scannedItems.length} item{scannedItems.length !== 1 ? 's' : ''} scanned
+        </Text>
       )}
     </View>
   );
@@ -206,17 +219,22 @@ export default function App() {
           </View>
         </View>
 
-        {/* Scan again button */}
-        {scanned && (
-          <TouchableOpacity 
-            style={styles.button} 
-            onPress={() => setScanned(false)}
-          >
-            <Text style={styles.buttonText}>✓ Scanned! Tap to Scan Again</Text>
-          </TouchableOpacity>
+        {/* Countdown with undo option */}
+        {countdown > 0 && (
+          <View style={styles.countdownContainer}>
+            <Text style={styles.countdownText}>
+              ✓ Scanned! Opening details in {countdown}...
+            </Text>
+            <TouchableOpacity 
+              style={styles.undoButton} 
+              onPress={cancelScan}
+            >
+              <Text style={styles.undoButtonText}>↻ Undo & Rescan</Text>
+            </TouchableOpacity>
+          </View>
         )}
 
-        {!scanned && (
+        {!scanned && countdown === 0 && (
           <View style={styles.instructionBox}>
             <Text style={styles.instructionText}>Point camera at barcode</Text>
           </View>
@@ -258,6 +276,214 @@ export default function App() {
     </View>
   );
 
+  // Render History Screen (Grid View)
+  const renderHistoryScreen = () => (
+    <View style={styles.fullScreen}>
+      <View style={styles.headerBar}>
+        <Text style={styles.headerTitle}>History</Text>
+      </View>
+      
+      {scannedItems.length === 0 ? (
+        <View style={styles.emptyState}>
+          <Text style={styles.emptyStateText}>No items scanned yet</Text>
+          <Text style={styles.emptyStateSubtext}>Scan or enter a barcode to get started</Text>
+        </View>
+      ) : (
+        <ScrollView style={styles.historyScrollView}>
+          <View style={styles.historyGrid}>
+            {scannedItems.map((item) => (
+              <TouchableOpacity 
+                key={item.id}
+                style={styles.gridItem}
+                onPress={() => {
+                  setSelectedItem(item);
+                  setPreviousScreen('history');
+                  setScreen('details');
+                }}
+              >
+                {item.product?.image ? (
+                  <Image 
+                    source={{ uri: item.product.image }} 
+                    style={styles.gridImage}
+                    resizeMode="cover"
+                  />
+                ) : (
+                  <View style={styles.gridImagePlaceholder}>
+                    <Text style={styles.placeholderText}>📦</Text>
+                  </View>
+                )}
+                <Text style={styles.gridItemName} numberOfLines={2}>
+                  {item.product?.name || item.data}
+                </Text>
+                {item.product?.brand && (
+                  <Text style={styles.gridItemBrand} numberOfLines={1}>
+                    {item.product.brand}
+                  </Text>
+                )}
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
+      )}
+    </View>
+  );
+
+  // Render Details Screen
+  const renderDetailsScreen = () => {
+    if (!selectedItem) {
+      return (
+        <View style={styles.centerContent}>
+          <Text style={styles.text}>No item selected</Text>
+          <TouchableOpacity 
+            style={styles.button} 
+            onPress={() => setScreen('home')}
+          >
+            <Text style={styles.buttonText}>Go Home</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+
+    return (
+      <View style={styles.fullScreen}>
+        <View style={styles.headerBar}>
+          <TouchableOpacity onPress={() => setScreen(previousScreen)}>
+            <Text style={styles.backLink}>← Back</Text>
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Product Details</Text>
+          <View style={{ width: 50 }} />
+        </View>
+
+        <ScrollView style={styles.detailsScrollView}>
+          {/* Product Image */}
+          {selectedItem.product?.image && (
+            <Image 
+              source={{ uri: selectedItem.product.image }} 
+              style={styles.detailsImage}
+              resizeMode="contain"
+            />
+          )}
+
+          {/* Product Info */}
+          <View style={styles.detailsCard}>
+            <Text style={styles.detailsProductName}>
+              {selectedItem.product?.name || 'Unknown Product'}
+            </Text>
+            
+            {selectedItem.product?.brand && (
+              <Text style={styles.detailsBrand}>{selectedItem.product.brand}</Text>
+            )}
+            
+            <View style={styles.barcodeContainer}>
+              <Text style={styles.barcodeLabel}>Barcode:</Text>
+              <Text style={styles.barcodeValue}>{selectedItem.data}</Text>
+            </View>
+
+            {selectedItem.product?.nutritionGrade && (
+              <View style={styles.nutritionGrade}>
+                <Text style={styles.nutritionGradeText}>
+                  Nutrition Grade: {selectedItem.product.nutritionGrade.toUpperCase()}
+                </Text>
+              </View>
+            )}
+          </View>
+
+          {/* Ingredients */}
+          {selectedItem.product?.ingredients && (
+            <View style={styles.detailsCard}>
+              <Text style={styles.sectionTitle}>🧪 Ingredients</Text>
+              <Text style={styles.ingredientsText}>
+                {selectedItem.product.ingredients}
+              </Text>
+            </View>
+          )}
+
+          {/* Allergens */}
+          {selectedItem.product?.allergens && (
+            <View style={styles.detailsCard}>
+              <Text style={styles.sectionTitle}>⚠️ Allergens</Text>
+              <Text style={styles.allergensText}>
+                {selectedItem.product.allergens}
+              </Text>
+            </View>
+          )}
+
+          {/* Labels */}
+          {selectedItem.product?.labels && (
+            <View style={styles.detailsCard}>
+              <Text style={styles.sectionTitle}>🏷️ Labels</Text>
+              <Text style={styles.labelsText}>
+                {selectedItem.product.labels}
+              </Text>
+            </View>
+          )}
+
+          {/* Categories */}
+          {selectedItem.product?.categories && (
+            <View style={styles.detailsCard}>
+              <Text style={styles.sectionTitle}>📂 Categories</Text>
+              <Text style={styles.categoriesText}>
+                {selectedItem.product.categories}
+              </Text>
+            </View>
+          )}
+
+          {/* Go-UPC Link */}
+          <TouchableOpacity 
+            style={styles.externalLinkButton}
+            onPress={() => Linking.openURL(`https://go-upc.com/search?q=${selectedItem.data}`)}
+          >
+            <Text style={styles.externalLinkText}>🔗 View on go-upc.com</Text>
+          </TouchableOpacity>
+
+          {/* Metadata */}
+          <View style={styles.metadataCard}>
+            <Text style={styles.metadata}>
+              Scanned: {selectedItem.timestamp}
+            </Text>
+            <Text style={styles.metadata}>
+              Type: {selectedItem.type.toUpperCase()}
+            </Text>
+            {selectedItem.product?.source && (
+              <Text style={styles.metadata}>
+                Source: {selectedItem.product.source}
+              </Text>
+            )}
+          </View>
+        </ScrollView>
+      </View>
+    );
+  };
+
+  // Render Tab Navigation
+  const renderTabBar = () => (
+    <View style={styles.tabBar}>
+      <TouchableOpacity 
+        style={[styles.tab, activeTab === 'home' && styles.activeTab]}
+        onPress={() => {
+          setActiveTab('home');
+          setScreen('home');
+        }}
+      >
+        <Text style={[styles.tabText, activeTab === 'home' && styles.activeTabText]}>
+          🏠 Home
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={[styles.tab, activeTab === 'history' && styles.activeTab]}
+        onPress={() => {
+          setActiveTab('history');
+          setScreen('history');
+        }}
+      >
+        <Text style={[styles.tabText, activeTab === 'history' && styles.activeTabText]}>
+          📋 History ({scannedItems.length})
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+
   // Main render logic
   if (!permission) {
     return (
@@ -277,6 +503,11 @@ export default function App() {
         {screen === 'home' && renderHomeScreen()}
         {screen === 'scanner' && renderScannerScreen()}
         {screen === 'manual' && renderManualScreen()}
+        {screen === 'history' && renderHistoryScreen()}
+        {screen === 'details' && renderDetailsScreen()}
+        
+        {/* Show tab bar on home and history screens only */}
+        {(screen === 'home' || screen === 'history') && renderTabBar()}
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -529,6 +760,33 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '600',
   },
+  countdownContainer: {
+    backgroundColor: '#16213e',
+    margin: 20,
+    padding: 20,
+    borderRadius: 15,
+    borderWidth: 2,
+    borderColor: '#00ff88',
+    alignItems: 'center',
+  },
+  countdownText: {
+    fontSize: 18,
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 15,
+    fontWeight: '600',
+  },
+  undoButton: {
+    backgroundColor: '#ff6b6b',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 10,
+  },
+  undoButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
   input: {
     backgroundColor: '#16213e',
     width: '100%',
@@ -585,5 +843,228 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 30,
     lineHeight: 24,
+  },
+  itemCount: {
+    fontSize: 14,
+    color: '#00ff88',
+    marginTop: 20,
+    textAlign: 'center',
+  },
+  // Tab Bar Styles
+  tabBar: {
+    flexDirection: 'row',
+    backgroundColor: '#16213e',
+    borderTopWidth: 2,
+    borderTopColor: '#00ff88',
+  },
+  tab: {
+    flex: 1,
+    padding: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  activeTab: {
+    backgroundColor: '#1a1a2e',
+    borderTopWidth: 3,
+    borderTopColor: '#00ff88',
+  },
+  tabText: {
+    fontSize: 14,
+    color: '#aaa',
+    fontWeight: '600',
+  },
+  activeTabText: {
+    color: '#00ff88',
+  },
+  // Full Screen Layout
+  fullScreen: {
+    flex: 1,
+  },
+  headerBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 20,
+    paddingBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#16213e',
+  },
+  // Empty State
+  emptyState: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 40,
+  },
+  emptyStateText: {
+    fontSize: 20,
+    color: '#fff',
+    marginBottom: 10,
+    fontWeight: '600',
+  },
+  emptyStateSubtext: {
+    fontSize: 14,
+    color: '#aaa',
+    textAlign: 'center',
+  },
+  // History Grid Styles
+  historyScrollView: {
+    flex: 1,
+  },
+  historyGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 10,
+  },
+  gridItem: {
+    width: '48%',
+    backgroundColor: '#16213e',
+    borderRadius: 12,
+    padding: 12,
+    margin: '1%',
+    borderWidth: 2,
+    borderColor: '#1a1a2e',
+  },
+  gridImage: {
+    width: '100%',
+    height: 120,
+    borderRadius: 8,
+    backgroundColor: '#1a1a2e',
+    marginBottom: 8,
+  },
+  gridImagePlaceholder: {
+    width: '100%',
+    height: 120,
+    borderRadius: 8,
+    backgroundColor: '#1a1a2e',
+    marginBottom: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  placeholderText: {
+    fontSize: 48,
+  },
+  gridItemName: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 4,
+    minHeight: 36,
+  },
+  gridItemBrand: {
+    fontSize: 12,
+    color: '#00ff88',
+    fontStyle: 'italic',
+  },
+  // Details Screen Styles
+  detailsScrollView: {
+    flex: 1,
+  },
+  detailsImage: {
+    width: '100%',
+    height: 250,
+    backgroundColor: '#16213e',
+  },
+  detailsCard: {
+    backgroundColor: '#16213e',
+    margin: 15,
+    padding: 20,
+    borderRadius: 12,
+    borderLeftWidth: 4,
+    borderLeftColor: '#00ff88',
+  },
+  detailsProductName: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 8,
+  },
+  detailsBrand: {
+    fontSize: 18,
+    color: '#00ff88',
+    fontStyle: 'italic',
+    marginBottom: 12,
+  },
+  barcodeContainer: {
+    backgroundColor: '#1a1a2e',
+    padding: 12,
+    borderRadius: 8,
+    marginTop: 8,
+  },
+  barcodeLabel: {
+    fontSize: 12,
+    color: '#aaa',
+    marginBottom: 4,
+  },
+  barcodeValue: {
+    fontSize: 18,
+    color: '#fff',
+    fontFamily: 'monospace',
+    fontWeight: 'bold',
+  },
+  nutritionGrade: {
+    backgroundColor: '#00ff88',
+    padding: 10,
+    borderRadius: 8,
+    marginTop: 12,
+    alignItems: 'center',
+  },
+  nutritionGradeText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#1a1a2e',
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 12,
+  },
+  ingredientsText: {
+    fontSize: 14,
+    color: '#fff',
+    lineHeight: 22,
+  },
+  allergensText: {
+    fontSize: 14,
+    color: '#ff6b6b',
+    lineHeight: 22,
+    fontWeight: '600',
+  },
+  labelsText: {
+    fontSize: 14,
+    color: '#00ff88',
+    lineHeight: 22,
+  },
+  categoriesText: {
+    fontSize: 14,
+    color: '#aaa',
+    lineHeight: 22,
+  },
+  externalLinkButton: {
+    backgroundColor: '#16213e',
+    margin: 15,
+    padding: 18,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#00ff88',
+    alignItems: 'center',
+  },
+  externalLinkText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#00ff88',
+  },
+  metadataCard: {
+    backgroundColor: '#16213e',
+    margin: 15,
+    marginBottom: 30,
+    padding: 15,
+    borderRadius: 12,
+  },
+  metadata: {
+    fontSize: 12,
+    color: '#666',
+    marginBottom: 4,
   },
 });
