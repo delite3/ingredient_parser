@@ -110,6 +110,78 @@ npx expo start
 npx expo start --clear
 ```
 
+## Testing
+
+### Test Mode (In-App)
+
+The app includes a built-in **Test Mode** for quick testing without physical scanning:
+
+1. Open the app or Expo Go
+2. Tap the **🧪 Test Mode** button on the home screen
+3. Choose from 8 pre-loaded sample barcodes
+4. Tap any barcode to simulate scanning it
+5. View the product details and ingredients
+
+Sample test barcodes include popular products like Nutella, Coca-Cola, KitKat, and more. Each tap triggers the same flow as a real barcode scan, including:
+- Product lookup from Open Food Facts API
+- 3-second countdown with undo option
+- Full product details including ingredients, allergens, and nutrition info
+- Navigation to details screen
+
+### Automated Testing
+
+Run automated barcode lookup tests:
+
+```bash
+# Test all sample barcodes via API
+npm test
+
+# Same as above
+npm run test:quick
+```
+
+The test script (`test-barcodes.js`):
+- Tests 8 different product barcodes
+- Verifies product information is returned
+- Checks for ingredients, images, and nutrition data
+- Shows detailed results for each lookup
+- Useful for API validation without physical scanning
+
+**Sample output:**
+```
+🧪 Testing Barcode Lookup
+
+Testing Nutella              (3017620422003)... ✅ PASS
+  └─ Found: Nutella
+     Brand: Ferrero
+     Ingredients: Sugar, palm oil, hazelnuts, cocoa...
+     Ingredient count: 8
+     Has image: Yes
+     Nutrition grade: E
+
+Testing Coca-Cola            (5449000000996)... ✅ PASS
+  └─ Found: Coca-Cola
+     ...
+```
+
+### Manual Testing Options
+
+1. **Test Mode** (easiest): Use in-app test barcodes
+2. **Manual Entry**: Enter any barcode number manually
+3. **Online Barcodes**: Find barcodes on [go-upc.com](https://go-upc.com) and enter them
+4. **Physical Scanning**: Scan actual products with your phone camera
+
+### Writing Custom Tests
+
+To add more test cases, edit `test-barcodes.js`:
+
+```javascript
+const testBarcodes = [
+  { code: 'YOUR_BARCODE_HERE', name: 'Product Name' },
+  // Add more test cases...
+];
+```
+
 ## Troubleshooting
 
 ### Camera Permission Issues

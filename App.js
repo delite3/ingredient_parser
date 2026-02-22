@@ -14,7 +14,7 @@ export default function App() {
   const [scanned, setScanned] = useState(false);
   const [loading, setLoading] = useState(false);
   const [countdown, setCountdown] = useState(0);
-  const countdownTimer = useRef(null);
+  const pendingFromScreen = useRef('scanner');
 
   // Lookup product information from APIs
   const lookupProduct = async (barcode) => {
@@ -62,44 +62,38 @@ export default function App() {
       product: productInfo,
     };
     
-    setScannedItems([newItem, ...scannedItems]);
+    setScannedItems(prev => [newItem, ...prev]);
     setSelectedItem(newItem);
     setLoading(false);
     
-    // Start countdown before auto-navigation (3 seconds)
-    let timeLeft = 3;
-    setCountdown(timeLeft);
-    
-    const timer = setInterval(() => {
-      timeLeft--;
-      if (timeLeft <= 0) {
-        clearInterval(timer);
-        // Auto-navigate to details screen after countdown
-        setPreviousScreen(fromScreen);
-        setScreen('details');
-        setActiveTab('home');
-        setScanned(false); // Reset scan state
-        setCountdown(0);
-      } else {
-        setCountdown(timeLeft);
-      }
-    }, 1000);
-    
-    countdownTimer.current = timer;
+    // Store where we came from, then kick off the countdown
+    pendingFromScreen.current = fromScreen;
+    setCountdown(3);
   };
 
   // Cancel scan and undo
   const cancelScan = () => {
-    if (countdownTimer.current) {
-      clearInterval(countdownTimer.current);
-    }
     setCountdown(0);
     setScanned(false);
-    // Remove the last scanned item
-    if (scannedItems.length > 0) {
-      setScannedItems(scannedItems.slice(1));
-    }
+    setScannedItems(prev => prev.slice(1));
   };
+
+  // Drive the countdown via useEffect - one tick per render, no stale closures
+  useEffect(() => {
+    if (countdown <= 0) return;
+    const timer = setTimeout(() => {
+      if (countdown === 1) {
+        setPreviousScreen(pendingFromScreen.current);
+        setScreen('details');
+        setActiveTab('home');
+        setScanned(false);
+        setCountdown(0);
+      } else {
+        setCountdown(c => c - 1);
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [countdown]);
 
   // Handle barcode scan (no cooldown, no alert)
   const handleBarCodeScanned = ({ type, data }) => {
@@ -118,14 +112,7 @@ export default function App() {
     }
   };
 
-  // Clean up timer on unmount
-  useEffect(() => {
-    return () => {
-      if (countdownTimer.current) {
-        clearInterval(countdownTimer.current);
-      }
-    };
-  }, []);
+
 
   // Render Home Screen
   const renderHomeScreen = () => (
@@ -147,6 +134,13 @@ export default function App() {
       >
         <Text style={styles.secondaryButtonIcon}>✏️</Text>
         <Text style={styles.secondaryButtonText}>Enter Manually</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={styles.testModeButton} 
+        onPress={() => setScreen('testmode')}
+      >
+        <Text style={styles.testModeButtonText}>🧪 Test Mode</Text>
       </TouchableOpacity>
 
       {/* Loading Indicator */}
@@ -273,6 +267,52 @@ export default function App() {
       >
         <Text style={styles.buttonText}>Submit Barcode</Text>
       </TouchableOpacity>
+    </View>
+  );
+
+  // Sample barcodes for Test Mode
+  const TEST_BARCODES = [
+    { code: '3017620422003', name: 'Nutella', emoji: '🍫' },
+    { code: '5449000000996', name: 'Coca-Cola', emoji: '🥤' },
+    { code: '8000500310427', name: 'Ferrero Rocher', emoji: '🌰' },
+    { code: '7622300489908', name: 'Oreo', emoji: '🥪' },
+    { code: '4008400201542', name: 'Haribo Goldbears', emoji: '🐻' },
+    { code: '7314025346290', name: 'Scan from URL', emoji: '🔍' },
+    { code: '5000159484695', name: 'KitKat', emoji: '🍫' },
+    { code: '8710908518355', name: 'Lay’s', emoji: '🦪' },
+  ];
+
+  // Render Test Mode Screen
+  const renderTestModeScreen = () => (
+    <View style={styles.fullScreen}>
+      <View style={styles.headerBar}>
+        <TouchableOpacity onPress={() => setScreen('home')}>
+          <Text style={styles.backLink}>← Back</Text>
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>🧪 Test Mode</Text>
+        <View style={{ width: 50 }} />
+      </View>
+
+      <Text style={styles.testModeSubtitle}>Tap a product to simulate scanning it</Text>
+
+      <ScrollView contentContainerStyle={styles.testBarcodeList}>
+        {TEST_BARCODES.map((item) => (
+          <TouchableOpacity
+            key={item.code}
+            style={styles.testBarcodeItem}
+            onPress={() => {
+              addBarcode('test', item.code, 'testmode');
+            }}
+          >
+            <Text style={styles.testBarcodeEmoji}>{item.emoji}</Text>
+            <View style={styles.testBarcodeInfo}>
+              <Text style={styles.testBarcodeName}>{item.name}</Text>
+              <Text style={styles.testBarcodeCode}>{item.code}</Text>
+            </View>
+            <Text style={styles.testBarcodeArrow}>›</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
     </View>
   );
 
@@ -503,6 +543,7 @@ export default function App() {
         {screen === 'home' && renderHomeScreen()}
         {screen === 'scanner' && renderScannerScreen()}
         {screen === 'manual' && renderManualScreen()}
+        {screen === 'testmode' && renderTestModeScreen()}
         {screen === 'history' && renderHistoryScreen()}
         {screen === 'details' && renderDetailsScreen()}
         
@@ -1066,5 +1107,65 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#666',
     marginBottom: 4,
+  },
+  // Test Mode Styles
+  testModeButton: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#444',
+    width: '100%',
+    padding: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  testModeButtonText: {
+    fontSize: 16,
+    color: '#888',
+    fontWeight: '600',
+  },
+  testModeSubtitle: {
+    fontSize: 14,
+    color: '#aaa',
+    textAlign: 'center',
+    paddingHorizontal: 20,
+    paddingBottom: 15,
+  },
+  testBarcodeList: {
+    paddingHorizontal: 15,
+    paddingBottom: 30,
+  },
+  testBarcodeItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#16213e',
+    borderRadius: 12,
+    padding: 18,
+    marginBottom: 10,
+    borderLeftWidth: 3,
+    borderLeftColor: '#00ff88',
+  },
+  testBarcodeEmoji: {
+    fontSize: 32,
+    marginRight: 15,
+  },
+  testBarcodeInfo: {
+    flex: 1,
+  },
+  testBarcodeName: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 4,
+  },
+  testBarcodeCode: {
+    fontSize: 13,
+    color: '#aaa',
+    fontFamily: 'monospace',
+  },
+  testBarcodeArrow: {
+    fontSize: 28,
+    color: '#00ff88',
+    fontWeight: 'bold',
   },
 });
