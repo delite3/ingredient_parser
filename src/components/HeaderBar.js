@@ -1,13 +1,17 @@
 /**
  * HeaderBar — simple top-bar with optional back button and title.
+ * Respects the safe area inset so the bar never hides behind the status bar.
  */
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, SPACING, FONT_SIZES } from '../constants/theme';
 
 export default function HeaderBar({ title, onBack }) {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top + SPACING.sm }]}>
       {onBack ? (
         <TouchableOpacity onPress={onBack}>
           <Text style={styles.backLink}>← Back</Text>

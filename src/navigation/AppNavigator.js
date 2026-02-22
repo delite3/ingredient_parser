@@ -1,8 +1,11 @@
 /**
  * src/navigation/AppNavigator.js
  *
- * Tab navigator (Home / History) with a shared stack for modal screens
- * (Scanner, ManualEntry, TestMode, Details).
+ * Tab navigator (Home / History) with nested stacks for modal screens.
+ *
+ * All shared state (scanner, history) is accessed via React Context —
+ * no inline render functions, so React Navigation never remounts screens
+ * due to changed function references.
  */
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
@@ -16,107 +19,47 @@ import ManualEntryScreen from '../screens/ManualEntryScreen';
 import TestModeScreen from '../screens/TestModeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
 
+import { useHistory } from '../context/HistoryContext';
 import { COLORS } from '../constants/theme';
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+const HomeStackNav = createNativeStackNavigator();
+const HistoryStackNav = createNativeStackNavigator();
 
 /**
  * Home tab + the action screens that push on top of it.
+ * All screens pull data from context — no props drilling.
  */
-function HomeStack({ scannerProps }) {
+function HomeStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="HomeMain">
-        {(props) => (
-          <HomeScreen
-            {...props}
-            route={{
-              ...props.route,
-              params: {
-                loading: scannerProps.loading,
-                itemCount: scannerProps.itemCount,
-              },
-            }}
-          />
-        )}
-      </Stack.Screen>
-      <Stack.Screen name="Scanner">
-        {(props) => (
-          <ScannerScreen
-            {...props}
-            route={{
-              ...props.route,
-              params: {
-                processBarcode: scannerProps.processBarcode,
-                cancelScan: scannerProps.cancelScan,
-                scanned: scannerProps.scanned,
-                markScanned: scannerProps.markScanned,
-                resetScanned: scannerProps.resetScanned,
-                countdown: scannerProps.countdown,
-                loading: scannerProps.loading,
-              },
-            }}
-          />
-        )}
-      </Stack.Screen>
-      <Stack.Screen name="Manual">
-        {(props) => (
-          <ManualEntryScreen
-            {...props}
-            route={{
-              ...props.route,
-              params: {
-                processBarcode: scannerProps.processBarcode,
-              },
-            }}
-          />
-        )}
-      </Stack.Screen>
-      <Stack.Screen name="TestMode">
-        {(props) => (
-          <TestModeScreen
-            {...props}
-            route={{
-              ...props.route,
-              params: {
-                processBarcode: scannerProps.processBarcode,
-              },
-            }}
-          />
-        )}
-      </Stack.Screen>
-      <Stack.Screen name="Details" component={DetailsScreen} />
-    </Stack.Navigator>
+    <HomeStackNav.Navigator screenOptions={{ headerShown: false }}>
+      <HomeStackNav.Screen name="HomeMain" component={HomeScreen} />
+      <HomeStackNav.Screen name="Scanner" component={ScannerScreen} />
+      <HomeStackNav.Screen name="Manual" component={ManualEntryScreen} />
+      <HomeStackNav.Screen name="TestMode" component={TestModeScreen} />
+      <HomeStackNav.Screen name="Details" component={DetailsScreen} />
+    </HomeStackNav.Navigator>
   );
 }
 
 /**
  * History tab with its own stack (so Details can push on top).
  */
-function HistoryStack({ scannedItems }) {
+function HistoryStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="HistoryMain">
-        {(props) => (
-          <HistoryScreen
-            {...props}
-            route={{
-              ...props.route,
-              params: { scannedItems },
-            }}
-          />
-        )}
-      </Stack.Screen>
-      <Stack.Screen name="Details" component={DetailsScreen} />
-    </Stack.Navigator>
+    <HistoryStackNav.Navigator screenOptions={{ headerShown: false }}>
+      <HistoryStackNav.Screen name="HistoryMain" component={HistoryScreen} />
+      <HistoryStackNav.Screen name="Details" component={DetailsScreen} />
+    </HistoryStackNav.Navigator>
   );
 }
 
 /**
  * Root TabNavigator.
  */
-export default function AppNavigator({ scannerProps, scannedItems }) {
+export default function AppNavigator() {
+  const { scannedItems } = useHistory();
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -128,23 +71,21 @@ export default function AppNavigator({ scannerProps, scannedItems }) {
     >
       <Tab.Screen
         name="Home"
+        component={HomeStack}
         options={{
           tabBarIcon: () => <Text style={styles.tabIcon}>🏠</Text>,
           tabBarLabel: 'Home',
         }}
-      >
-        {() => <HomeStack scannerProps={scannerProps} />}
-      </Tab.Screen>
+      />
 
       <Tab.Screen
         name="History"
+        component={HistoryStack}
         options={{
           tabBarIcon: () => <Text style={styles.tabIcon}>📋</Text>,
           tabBarLabel: `History (${scannedItems.length})`,
         }}
-      >
-        {() => <HistoryStack scannedItems={scannedItems} />}
-      </Tab.Screen>
+      />
     </Tab.Navigator>
   );
 }

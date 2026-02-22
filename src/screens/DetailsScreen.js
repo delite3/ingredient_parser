@@ -61,10 +61,43 @@ export default function DetailsScreen({ navigation, route }) {
         </View>
 
         {/* Ingredients */}
-        {product?.ingredients ? (
+        {(product?.ingredients || (product?.ingredientsList && product.ingredientsList.length > 0)) ? (
           <View style={styles.card}>
             <Text style={styles.sectionTitle}>🧪 Ingredients</Text>
-            <Text style={styles.ingredientsText}>{product.ingredients}</Text>
+            {product?.ingredients ? (
+              <Text style={styles.ingredientsText}>{product.ingredients}</Text>
+            ) : null}
+            {product?.ingredientsList && product.ingredientsList.length > 0 && !product?.ingredients ? (
+              <Text style={styles.ingredientsText}>
+                {product.ingredientsList.map((ing) => ing.text || ing.id?.replace('en:', '') || '').filter(Boolean).join(', ')}
+              </Text>
+            ) : null}
+            {product?.ingredientsList && product.ingredientsList.length > 0 ? (
+              <View style={styles.ingredientChips}>
+                {product.ingredientsList.map((ing, index) => {
+                  const name = ing.text || ing.id?.replace('en:', '') || `#${index + 1}`;
+                  return (
+                    <View key={ing.id || index} style={styles.ingredientChip}>
+                      <Text style={styles.ingredientChipText}>{name}</Text>
+                    </View>
+                  );
+                })}
+              </View>
+            ) : null}
+          </View>
+        ) : null}
+
+        {/* Additives */}
+        {product?.additivesTags && product.additivesTags.length > 0 ? (
+          <View style={styles.card}>
+            <Text style={styles.sectionTitle}>⚗️ Additives</Text>
+            <View style={styles.ingredientChips}>
+              {product.additivesTags.map((tag) => (
+                <View key={tag} style={[styles.ingredientChip, styles.additiveChip]}>
+                  <Text style={styles.additiveChipText}>{tag.replace('en:', '')}</Text>
+                </View>
+              ))}
+            </View>
           </View>
         ) : null}
 
@@ -211,6 +244,35 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZES.md,
     color: COLORS.textPrimary,
     lineHeight: 22,
+    marginBottom: SPACING.md,
+  },
+  ingredientChips: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: SPACING.sm,
+  },
+  ingredientChip: {
+    backgroundColor: COLORS.background,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 14,
+    marginRight: 6,
+    marginBottom: 6,
+    borderWidth: 1,
+    borderColor: COLORS.primary,
+  },
+  ingredientChipText: {
+    fontSize: FONT_SIZES.sm,
+    color: COLORS.textPrimary,
+  },
+  additiveChip: {
+    borderColor: '#ff6b35',
+    backgroundColor: 'rgba(255, 107, 53, 0.12)',
+  },
+  additiveChipText: {
+    fontSize: FONT_SIZES.sm,
+    color: '#ff6b35',
+    fontWeight: '600',
   },
   allergensText: {
     fontSize: FONT_SIZES.md,

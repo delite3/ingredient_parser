@@ -5,10 +5,11 @@ import React, { useCallback } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import HeaderBar from '../components/HeaderBar';
 import { TEST_BARCODES } from '../constants/testBarcodes';
+import { useScanner } from '../context/ScannerContext';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../constants/theme';
 
-export default function TestModeScreen({ navigation, route }) {
-  const { processBarcode } = route.params ?? {};
+export default function TestModeScreen({ navigation }) {
+  const { processBarcode } = useScanner();
 
   const handleSelect = useCallback(
     (code) => {

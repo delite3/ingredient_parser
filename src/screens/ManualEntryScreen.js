@@ -3,10 +3,13 @@
  */
 import React, { useState, useCallback } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useScanner } from '../context/ScannerContext';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../constants/theme';
 
-export default function ManualEntryScreen({ navigation, route }) {
-  const { processBarcode } = route.params ?? {};
+export default function ManualEntryScreen({ navigation }) {
+  const { processBarcode } = useScanner();
+  const insets = useSafeAreaInsets();
   const [input, setInput] = useState('');
 
   const handleSubmit = useCallback(() => {
@@ -21,7 +24,7 @@ export default function ManualEntryScreen({ navigation, route }) {
   return (
     <View style={styles.centerContent}>
       <TouchableOpacity
-        style={styles.backButtonTop}
+        style={[styles.backButtonTop, { top: insets.top + SPACING.sm }]}
         onPress={() => navigation.goBack()}
       >
         <Text style={styles.backLink}>← Back</Text>

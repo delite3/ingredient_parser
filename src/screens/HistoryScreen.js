@@ -2,11 +2,14 @@
  * HistoryScreen — grid view of all previously scanned items.
  */
 import React, { useCallback } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image, Alert, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useHistory } from '../context/HistoryContext';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../constants/theme';
 
-export default function HistoryScreen({ navigation, route }) {
-  const { scannedItems } = route.params ?? { scannedItems: [] };
+export default function HistoryScreen({ navigation }) {
+  const { scannedItems, removeItem } = useHistory();
+  const insets = useSafeAreaInsets();
 
   const handlePress = useCallback(
     (item) => {
@@ -15,9 +18,27 @@ export default function HistoryScreen({ navigation, route }) {
     [navigation],
   );
 
+  const handleDelete = useCallback(
+    (item) => {
+      Alert.alert(
+        'Remove Item',
+        `Remove "${item.product?.name || item.data}" from history?`,
+        [
+          { text: 'Cancel', style: 'cancel' },
+          {
+            text: 'Remove',
+            style: 'destructive',
+            onPress: () => removeItem(item.id),
+          },
+        ],
+      );
+    },
+    [removeItem],
+  );
+
   return (
     <View style={styles.container}>
-      <View style={styles.headerBar}>
+      <View style={[styles.headerBar, { paddingTop: insets.top + SPACING.sm }]}>
         <Text style={styles.headerTitle}>History</Text>
       </View>
 
@@ -34,7 +55,15 @@ export default function HistoryScreen({ navigation, route }) {
                 key={item.id}
                 style={styles.gridItem}
                 onPress={() => handlePress(item)}
+                onLongPress={() => handleDelete(item)}
               >
+                <TouchableOpacity
+                  style={styles.deleteButton}
+                  onPress={() => handleDelete(item)}
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                >
+                  <Text style={styles.deleteIcon}>✕</Text>
+                </TouchableOpacity>
                 {item.product?.image ? (
                   <Image
                     source={{ uri: item.product.image }}
@@ -115,6 +144,25 @@ const styles = StyleSheet.create({
     margin: '1%',
     borderWidth: 2,
     borderColor: COLORS.background,
+    position: 'relative',
+  },
+  deleteButton: {
+    position: 'absolute',
+    top: 6,
+    right: 6,
+    zIndex: 10,
+    backgroundColor: 'rgba(255,60,60,0.85)',
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  deleteIcon: {
+    color: '#fff',
+    fontSize: 13,
+    fontWeight: 'bold',
+    lineHeight: 15,
   },
   gridImage: {
     width: '100%',

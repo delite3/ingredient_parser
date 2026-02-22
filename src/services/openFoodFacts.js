@@ -16,12 +16,19 @@ const SOURCES = [
  * Parse the raw API response into our normalised product shape.
  */
 function parseProduct(product, sourceLabel) {
+  // Some databases store ingredient text in language-specific fields
+  const ingredientsText =
+    product.ingredients_text ||
+    product.ingredients_text_en ||
+    product.ingredients_text_with_allergens ||
+    null;
+
   return {
-    name: product.product_name || 'Unknown Product',
+    name: product.product_name || product.product_name_en || 'Unknown Product',
     brand: product.brands || '',
     image: product.image_url || product.image_front_url || null,
     source: sourceLabel,
-    ingredients: product.ingredients_text || null,
+    ingredients: ingredientsText,
     ingredientsList: product.ingredients || [],
     nutritionGrade: product.nutrition_grades || null,
     novaGroup: product.nova_group || null,

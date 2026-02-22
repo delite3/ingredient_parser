@@ -4,11 +4,11 @@
  * Thin shell that:
  *   1. Sets up the NavigationContainer
  *   2. Initialises the shared hooks (scan history + barcode scanner)
- *   3. Passes everything into the navigator
+ *   3. Wraps everything in Context providers so screens access state directly
  *
  * All UI lives under  src/screens/ , all logic under  src/hooks/  and  src/services/ .
  */
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
@@ -16,10 +16,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import AppNavigator from './src/navigation/AppNavigator';
 import { useScanHistory } from './src/hooks/useScanHistory';
 import { useBarcodeScanner } from './src/hooks/useBarcodeScanner';
+import { ScannerProvider } from './src/context/ScannerContext';
+import { HistoryProvider } from './src/context/HistoryContext';
 import { COLORS } from './src/constants/theme';
 
 export default function App() {
-  const { scannedItems, addItem, removeLastItem, isLoaded } = useScanHistory();
+  const { scannedItems, addItem, removeLastItem, removeItem, isLoaded } = useScanHistory();
 
   const {
     scanned,
@@ -30,6 +32,26 @@ export default function App() {
     markScanned,
     resetScanned,
   } = useBarcodeScanner({ addItem, removeLastItem });
+
+  // Memoised context values — must be called before any early return (Rules of Hooks)
+  const scannerValue = useMemo(
+    () => ({
+      processBarcode,
+      cancelScan,
+      scanned,
+      markScanned,
+      resetScanned,
+      countdown,
+      loading,
+      itemCount: scannedItems.length,
+    }),
+    [processBarcode, cancelScan, scanned, markScanned, resetScanned, countdown, loading, scannedItems.length],
+  );
+
+  const historyValue = useMemo(
+    () => ({ scannedItems, removeItem }),
+    [scannedItems, removeItem],
+  );
 
   // Wait for persisted history to load before rendering
   if (!isLoaded) {
@@ -43,23 +65,15 @@ export default function App() {
     );
   }
 
-  // Bundle everything the navigator needs into a single props object
-  const scannerProps = {
-    processBarcode,
-    cancelScan,
-    scanned,
-    markScanned,
-    resetScanned,
-    countdown,
-    loading,
-    itemCount: scannedItems.length,
-  };
-
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        <AppNavigator scannerProps={scannerProps} scannedItems={scannedItems} />
-      </NavigationContainer>
+      <HistoryProvider value={historyValue}>
+        <ScannerProvider value={scannerValue}>
+          <NavigationContainer>
+            <AppNavigator />
+          </NavigationContainer>
+        </ScannerProvider>
+      </HistoryProvider>
     </SafeAreaProvider>
   );
 }

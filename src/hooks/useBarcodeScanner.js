@@ -18,6 +18,7 @@ export function useBarcodeScanner({ addItem, removeLastItem }) {
   const [countdown, setCountdown] = useState(0);
   const [latestItem, setLatestItem] = useState(null);
   const navigateOnComplete = useRef(null);
+  const processingRef = useRef(false); // hard dedup guard
 
   // Drive the countdown timer
   useEffect(() => {
@@ -47,23 +48,30 @@ export function useBarcodeScanner({ addItem, removeLastItem }) {
   const processBarcode = useCallback(
     async (type, data, onDone) => {
       if (loading || countdown > 0) return;
+      // Ref-based guard prevents concurrent calls even if state hasn't flushed yet
+      if (processingRef.current) return;
+      processingRef.current = true;
 
       setLoading(true);
-      const productInfo = await lookupProduct(data);
+      try {
+        const productInfo = await lookupProduct(data);
 
-      const newItem = {
-        id: Date.now().toString(),
-        type,
-        data,
-        timestamp: new Date().toLocaleString(),
-        product: productInfo,
-      };
+        const newItem = {
+          id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+          type,
+          data,
+          timestamp: new Date().toLocaleString(),
+          product: productInfo,
+        };
 
-      addItem(newItem);
-      setLatestItem(newItem);
-      setLoading(false);
-      navigateOnComplete.current = onDone;
-      setCountdown(3);
+        addItem(newItem);
+        setLatestItem(newItem);
+        navigateOnComplete.current = onDone;
+        setCountdown(3);
+      } finally {
+        setLoading(false);
+        processingRef.current = false;
+      }
     },
     [addItem, loading, countdown],
   );

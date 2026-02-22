@@ -4,13 +4,16 @@
 import React, { useCallback } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScannerOverlay from '../components/ScannerOverlay';
 import CountdownBanner from '../components/CountdownBanner';
+import { useScanner } from '../context/ScannerContext';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../constants/theme';
 
-export default function ScannerScreen({ navigation, route }) {
+export default function ScannerScreen({ navigation }) {
   const { processBarcode, cancelScan, scanned, markScanned, resetScanned, countdown, loading } =
-    route.params ?? {};
+    useScanner();
+  const insets = useSafeAreaInsets();
 
   const [permission, requestPermission] = useCameraPermissions();
 
@@ -59,7 +62,7 @@ export default function ScannerScreen({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: insets.top + SPACING.sm }]}>
         <TouchableOpacity onPress={handleBack}>
           <Text style={styles.backLink}>← Back</Text>
         </TouchableOpacity>

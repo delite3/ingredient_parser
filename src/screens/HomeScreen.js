@@ -3,10 +3,11 @@
  */
 import React from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet } from 'react-native';
+import { useScanner } from '../context/ScannerContext';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../constants/theme';
 
-export default function HomeScreen({ navigation, route }) {
-  const { loading, itemCount } = route.params ?? {};
+export default function HomeScreen({ navigation }) {
+  const { loading, itemCount } = useScanner();
 
   return (
     <View style={styles.centerContent}>

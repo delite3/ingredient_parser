@@ -38,5 +38,9 @@ export function useScanHistory() {
     setScannedItems((prev) => prev.slice(1));
   }, []);
 
-  return { scannedItems, addItem, removeLastItem, isLoaded };
+  const removeItem = useCallback((id) => {
+    setScannedItems((prev) => prev.filter((item) => item.id !== id));
+  }, []);
+
+  return { scannedItems, addItem, removeLastItem, removeItem, isLoaded };
 }
